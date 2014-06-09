@@ -26,11 +26,14 @@ using namespace std;
 #include "Hash.h"
 #include "App.h"
 
-const char SEARCH_CHOICE = 'S',
-RECUR_DEPTH_CHOICE = 'D', 
-BREADTH_FIRST_CHOICE = 'B', 
-PRINT_TREE_CHOICE = 'T', 
-PRINT_RANGE_CHOICE = 'R',
+const char INSERT_CHOICE = 'I',
+DELETE_CHOICE = 'D',
+SEARCH_CHOICE = 'S',
+PRINT_HASH_LIST = 'H',
+PRINT_KEY_LIST = 'K'
+PRINT_TREE_CHOICE = 'T',
+SAVE_TO_FILE_CHOICE = 'F',
+HASH_STATS_CHOICE = 'I',
 TOGGLE_MENU = 'M',
 QUIT_CHOICE = 'Q';
 
@@ -39,10 +42,18 @@ const string WELCOME_STATEMENT = "Welcome to the Binary Search Tree Program.  Th
 ////////////////-
 // Prototypes //
 ////////////////
-bool isValidNumber(int);
-void parsetoBinaryTree(BST *, ifstream &);
-void handleSearch(BSTNode*);
-void randomizeApps(ifstream &);
+
+/*
+ Todo:
+ - insertData
+ - deleteData
+ - Find&display one element using primary key
+ - List data in hash table sequence
+ - List data in key sequence
+ - print indented tree
+ - data to file
+ - hash stats.
+ */
 
 int menu(bool);
 char getValidChar();
@@ -90,6 +101,16 @@ int main()
                 showMenu=!showMenu;
             }
                 break;
+            case INSERT_CHOICE:
+            {
+               cout<<"Insert choice";
+            }
+                break;
+            case DELETE_CHOICE
+            {
+                cout<<"Delete Choice";
+            }
+                break;
             case SEARCH_CHOICE:
             {
                 int key = getValidKey();
@@ -97,20 +118,14 @@ int main()
                 handleSearch(result);
             }
                 break;
-            case RECUR_DEPTH_CHOICE:
+            case PRINT_HASH_LIST:
             {
-                cout<<"\tInorder Traversal:"<<endl<<"\t\t ";
-                BSTTree->inorderRecursive(BSTTree->getRoot());
-                cout<<endl<<"\tPreorder Traversal:"<<endl<<"\t\t";
-                BSTTree->preorderRecursive(BSTTree->getRoot());
-                cout<<endl<<"\tPostorder Traversal:"<<endl<<"\t\t";
-                BSTTree->postorderRecursive(BSTTree->getRoot());
-                cout<<endl<<endl;
+                cout<<"Print hash list";
             }
                 break;
-            case BREADTH_FIRST_CHOICE:
+            case PRINT_KEY_LIST:
             {
-                BSTTree->breadthFirst();
+                cout<<"Print key sequence";
             }
                 break;
             case PRINT_TREE_CHOICE:
@@ -122,22 +137,18 @@ int main()
                     cout<<"\t BST Tree is empty."<<endl<<endl;
             }
                 break;
-            case PRINT_RANGE_CHOICE :
+            case SAVE_TO_FILE_CHOICE:
             {
-                int lower;
-                int upper;
-                getValidRange(lower, upper);
-                
-                cout<<"The unique keys between "<< lower<<" and "<<upper<<" are:"<<endl<<"\t";
-
-                BSTTree->printRange(lower, upper, BSTTree->getRoot());
-                
-                cout<<endl;
+               cout<<"Save to file choice";
             }
+                break;
+            case HASH_STATS_CHOICE:
+            {
+                cout<<"Hash Stats file choice";
+            }
+                break;
         }
     }
-
-    delete BSTTree;
 
 }
  
@@ -152,22 +163,28 @@ int main()
 int menu(bool showMenu)
 {
     int choice;
-    
+
     // Display the menu and get the user's choice.
     if(showMenu)
         cout << "\nWhat do you want to do?\n\t"
-        << TOGGLE_MENU
-        << " - Toggle Menu\n\t"
+        << INSERT_CHOICE
+        << " - Insert an Entry\n\t"
+        << DELETE_CHOICE
+        << " - Delete an Entry\n\t"
         << SEARCH_CHOICE
-        << " - Search for a unique key\n\t"
-        << RECUR_DEPTH_CHOICE
-        << " - Recursive Depth First Traversal\n\t"
-        << BREADTH_FIRST_CHOICE
-        << " - Breadth First Traversal\n\t"
+        << " - Search for a specific key\n\t"
+        << PRINT_HASH_LIST
+        << " - Prints Hash List\n\t"
+        << PRINT_KEY_LIST
+        << " - Prints list of entries in sequential order"
         << PRINT_TREE_CHOICE
         << " - Print Tree as an Indented List\n\t"
-        << PRINT_RANGE_CHOICE
-        << " - Prints all unique keys between a lower and upper bound\n\t"
+        << SAVE_TO_FILE_CHOICE
+        << " - Save current output to file\n\t"
+        << HASH_STATS_CHOICE
+        << " - Display hash statistics\n\t"
+        << TOGGLE_MENU
+        << " - Toggle Menu \n\t"
         << QUIT_CHOICE
         << " - Quit the program\n";
     
