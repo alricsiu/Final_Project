@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A838115319454AFB00A1712C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838115219454AFB00A1712C /* main.cpp */; };
 		A838115519454AFB00A1712C /* Final_Project.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A838115419454AFB00A1712C /* Final_Project.1 */; };
+		A838115E19454C1600A1712C /* HW_3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838115B19454C1600A1712C /* HW_3.cpp */; };
+		A838115F19454C1600A1712C /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838115D19454C1600A1712C /* App.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +30,9 @@
 		A838114F19454AFB00A1712C /* Final Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Final Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A838115219454AFB00A1712C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A838115419454AFB00A1712C /* Final_Project.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Final_Project.1; sourceTree = "<group>"; };
+		A838115B19454C1600A1712C /* HW_3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HW_3.cpp; path = ../HW_3.cpp; sourceTree = "<group>"; };
+		A838115C19454C1600A1712C /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = App.h; path = ../App.h; sourceTree = "<group>"; };
+		A838115D19454C1600A1712C /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = App.cpp; path = ../App.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +65,9 @@
 		A838115119454AFB00A1712C /* Final Project */ = {
 			isa = PBXGroup;
 			children = (
+				A838115B19454C1600A1712C /* HW_3.cpp */,
+				A838115C19454C1600A1712C /* App.h */,
+				A838115D19454C1600A1712C /* App.cpp */,
 				A838115219454AFB00A1712C /* main.cpp */,
 				A838115419454AFB00A1712C /* Final_Project.1 */,
 			);
@@ -117,6 +125,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A838115F19454C1600A1712C /* App.cpp in Sources */,
+				A838115E19454C1600A1712C /* HW_3.cpp in Sources */,
 				A838115319454AFB00A1712C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
