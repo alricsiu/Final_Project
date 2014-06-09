@@ -30,10 +30,10 @@ const char INSERT_CHOICE = 'I',
 DELETE_CHOICE = 'D',
 SEARCH_CHOICE = 'S',
 PRINT_HASH_LIST = 'H',
-PRINT_KEY_LIST = 'K'
+PRINT_KEY_LIST = 'K',
 PRINT_TREE_CHOICE = 'T',
 SAVE_TO_FILE_CHOICE = 'F',
-HASH_STATS_CHOICE = 'I',
+HASH_STATS_CHOICE = 'L',
 TOGGLE_MENU = 'M',
 QUIT_CHOICE = 'Q';
 
@@ -84,7 +84,7 @@ int main()
     }
 
     BST *BSTTree = new BST();
-    parsetoBinaryTree(BSTTree, inputFile);
+//    parsetoBinaryTree(BSTTree, inputFile);
 
     inputFile.close();
     
@@ -106,7 +106,7 @@ int main()
                cout<<"Insert choice";
             }
                 break;
-            case DELETE_CHOICE
+            case DELETE_CHOICE:
             {
                 cout<<"Delete Choice";
             }
@@ -114,8 +114,8 @@ int main()
             case SEARCH_CHOICE:
             {
                 int key = getValidKey();
-                BSTNode *result = BSTTree->search(key);
-                handleSearch(result);
+//                BSTNode *result = BSTTree->search(key);
+//                handleSearch(result);
             }
                 break;
             case PRINT_HASH_LIST:
@@ -131,10 +131,10 @@ int main()
             case PRINT_TREE_CHOICE:
             {
                 cout<<endl<<"Binary Search Tree displayed below:"<<endl<<endl;
-                if(BSTTree->getCount())
-                BSTTree->printTree(BSTTree->getRoot(), 0);
-                else
-                    cout<<"\t BST Tree is empty."<<endl<<endl;
+//                if(BSTTree->getCount())
+//                BSTTree->printTree(BSTTree->getRoot(), 0);
+//                else
+//                    cout<<"\t BST Tree is empty."<<endl<<endl;
             }
                 break;
             case SAVE_TO_FILE_CHOICE:
@@ -304,28 +304,6 @@ int getValidKey()
 }
 
 
-//////////////////
-//Handle Search //
-//////////////////
-/**
- * Generates the output from the result BSTNode returned from seaching the Tree.
- * @param result A BSTNode that is the search result.
- */
-void handleSearch(BSTNode* result)
-{
-    if(result)
-    {
-        cout<<"\tSearch Result:"<<endl;
-        cout<<"\t\t"<<"Unique Key: "<<result->getData()->getUniqueKey()<<endl;
-        cout<<"\t\t"<<"App Name: "<<result->getData()->getAppName()<<endl;
-        cout<<"\t\t"<<"Author: "<<result->getData()->getAuthor()<<endl;
-        cout<<"\t\t"<<"Category: "<<result->getData()->getCategory()<<endl;
-    }
-    else
-    {
-        cout<<"\tUnique key is not found."<<endl;
-    }
-}
 
 //////////////////////
 //ParseToBinaryTree //
@@ -384,7 +362,7 @@ void parsetoBinaryTree(BST *tree, ifstream &inputFile)
                     istringstream ( uniquekey ) >> key;
                     
                     App *app = new App(key, appName, author, category);
-                    tree->insert(app);
+//                    tree->insert(app);
                     
                     counter = 0;
 

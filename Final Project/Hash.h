@@ -8,11 +8,13 @@
 
 #ifndef _GroupProject_Hash_h
 #define _GroupProject_Hash_h
+#include <iostream>
+#include "App.h"
 
 class Hash
 {
 private:
-    MobileApp app;
+    App* app;
     string searchKey; // get clarification on wether string should be keytype
     
 protected:
@@ -21,10 +23,10 @@ protected:
     
 public:
     Hash();
-    Hash(MobileApp app, string searchKey);
-    MobileApp getItem() const;
+    Hash(App* app, string searchKey);
+    App* getItem() const;
     string getKey() const;
-    void setItem(const MobileApp & newEntry)
+    void setItem(const App* & newEntry);
     
 };
 
