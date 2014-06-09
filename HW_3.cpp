@@ -22,8 +22,8 @@
 
 using namespace std;
 
-#include "BSTNode.h"
 #include "BST.h"
+#include "Hash.h"
 #include "App.h"
 
 const char SEARCH_CHOICE = 'S',
