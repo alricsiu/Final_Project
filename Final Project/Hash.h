@@ -26,7 +26,7 @@ class Hash{
         bool full = false;
         int count;
         Data appArray[3];
-        
+        //HELLO!!!
         
     };
     
