@@ -23,7 +23,7 @@
 using namespace std;
 
 #include "BST.h"
-#include "Hash.h"
+//#include "Hash.h"
 #include "App.h"
 
 const char INSERT_CHOICE = 'I',
