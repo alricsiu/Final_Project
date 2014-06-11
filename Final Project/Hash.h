@@ -14,7 +14,7 @@
 class Hash
 {
 private:
-    App* app;
+    App* app;// HELLO
     string searchKey; // get clarification on wether string should be keytype
     
 protected:
