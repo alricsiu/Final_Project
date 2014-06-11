@@ -5,7 +5,7 @@
 //  Created by Alexis Candelaria on 6/1/14.
 //  Copyright (c) 2014 DreamDrivenApps. All rights reserved.
 //
-// Alric Added this
+// Alric Added this comment
 #ifndef __Hash__Hash__
 #define __Hash__Hash__
 
