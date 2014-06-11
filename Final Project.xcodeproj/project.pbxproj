@@ -11,6 +11,7 @@
 		A838115E19454C1600A1712C /* Final_Project_Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838115B19454C1600A1712C /* Final_Project_Main.cpp */; };
 		A838115F19454C1600A1712C /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838115D19454C1600A1712C /* App.cpp */; };
 		A838116419454D8800A1712C /* BST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838116319454D8800A1712C /* BST.cpp */; };
+		A8E616C719490A6A00A244B3 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E616C619490A6A00A244B3 /* Hash.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,7 +37,8 @@
 		A838116119454D8800A1712C /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		A838116219454D8800A1712C /* BST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BST.h; sourceTree = "<group>"; };
 		A838116319454D8800A1712C /* BST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BST.cpp; sourceTree = "<group>"; };
-		A838116519454DD200A1712C /* Hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
+		A8E616C519490A6A00A244B3 /* Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
+		A8E616C619490A6A00A244B3 /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +75,9 @@
 				A838116119454D8800A1712C /* Queue.h */,
 				A838116219454D8800A1712C /* BST.h */,
 				A838116319454D8800A1712C /* BST.cpp */,
-				A838116519454DD200A1712C /* Hash.h */,
 				A838115B19454C1600A1712C /* Final_Project_Main.cpp */,
+				A8E616C519490A6A00A244B3 /* Hash.h */,
+				A8E616C619490A6A00A244B3 /* Hash.cpp */,
 				A838115C19454C1600A1712C /* App.h */,
 				A838115D19454C1600A1712C /* App.cpp */,
 				A838115419454AFB00A1712C /* Final_Project.1 */,
@@ -135,6 +138,7 @@
 			files = (
 				A838115F19454C1600A1712C /* App.cpp in Sources */,
 				A838116419454D8800A1712C /* BST.cpp in Sources */,
+				A8E616C719490A6A00A244B3 /* Hash.cpp in Sources */,
 				A838115E19454C1600A1712C /* Final_Project_Main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
