@@ -13,11 +13,11 @@
 #include <string>
 using namespace std;
 
-class Hash
-{
-private:
-    App* app;// HELLO
-    string searchKey; // get clarification on wether string should be keytype
+struct Data {
+    int appId;
+    string appName;
+    string appPublisher;
+    string category;
     
 };
 
@@ -26,7 +26,7 @@ class Hash{
         bool full = false;
         int count;
         Data appArray[3];
-        
+        //HELLO!!!
         
     };
     
