@@ -207,6 +207,31 @@ void Hash::rehash(){
                                     hashTable[i].appArray[j]);
     //does rehashing with tableSize already set to new value.
     
+    //Alright LOOKS good probably better than my hash algorithm but here it is anyways:
+    /*
+     
+     int newTableSize = getNextPrime(tableSize);
+     Hash *reHashTable = new Hash(newTableSize);
+     reHashTable->hashTable = new bucketNode[newTableSize];
+     for(int i = 0; i < tableSize; i++){
+     for(int j = 0; j < bucketSize; j++){
+     if(hashTable[i].appArray[j].appId > 0){
+     int searchKey = hasher(hashTable[i].appArray[j].appId, newTableSize);
+     reHashTable->insert(searchKey, hashTable[i].appArray[j]);
+     }
+     }
+     }
+     tableSize = newTableSize;
+     hashTable = reHashTable->hashTable;
+     collisionCount = reHashTable->collisionCount;
+     entryCount = reHashTable->entryCount;
+     
+     }
+
+     
+     
+     */
+    
     // iterate through each element of current hashtable
     // run it through the hashtable and take each app
     // run the hasher function on it.
