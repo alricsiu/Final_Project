@@ -61,7 +61,7 @@ char getValidChar();
 int getValidKey();
 void getValidRange(int &, int &);
 
-void parsetoBinaryTree(BST *, Hash *, ifstream &);
+void parsetoBinaryTree(BST *, Hash *, ifstream &, string);
 
 //////////
 // Main //
@@ -79,7 +79,9 @@ int main()
 
     cout<<"Loaded Input file: Data.txt\n";
 
-    inputFile.open("/Users/joshuapham/Desktop/data_forHW4.txt");
+    string filename = "/Users/joshuapham/Desktop/data_forHW4.txt";
+    
+    inputFile.open(filename);
     if (!inputFile)
     {
         cout << "Error opening input.txt!\n";
@@ -88,7 +90,7 @@ int main()
 
     BST *BSTTree = new BST();
     Hash *hash = new Hash;
-    parsetoBinaryTree(BSTTree, hash, inputFile);
+    parsetoBinaryTree(BSTTree, hash, inputFile, filename);
     
     inputFile.close();
     
@@ -156,6 +158,7 @@ int main()
             case HASH_STATS_CHOICE:
             {
                 cout<<"Hash Stats file choice";
+                hash->showStats();
             }
                 break;
         }
@@ -322,12 +325,12 @@ int getValidKey()
  * Parses the input file into the binary tree. Creates an app object for each entry and inserts
  * the entry into the binary search tree using its unique key.
  
- EDIT: now also inserts into Hash Table for each insert.
+ EDIT: now also inserts into Hash Table for each insert. A better function name might be readData.
  
  * @param tree      The BST tree to insert the entries into.
  * @param inputFile The inputfile with the entries. Entries must span 4 lines, separated by new lines. 
  */
-void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile)
+void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filename)
 {
     char c;
 
@@ -379,7 +382,10 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile)
                     if (!hash->insert(hash->hasher(key), app))
                     {
                         hash->rehash();
-                        parsetoBinaryTree(tree, hash, inputFile);
+                        hash->showStats();
+                        inputFile.close();
+                        inputFile.open(filename);
+                        parsetoBinaryTree(tree, hash, inputFile, filename);
                     }
                     
                     counter = 0;

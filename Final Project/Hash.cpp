@@ -68,7 +68,7 @@ bool Hash::search(int searchKey){
 
 int Hash::hasher(int newApp)
 {
-    return newApp % tableSize;
+    return newApp * 101 % tableSize;
 }
 
 //***************************************************************************
@@ -191,7 +191,7 @@ void Hash::rehash(){
     int former_tableSize = tableSize;
     cout << "former tablesize: " << former_tableSize << endl;
     tableSize = getNextPrime(tableSize);
-    cout << "New TableSize:" << tableSize; // increase table size
+    cout << "New TableSize:" << tableSize << endl; // increase table size
     
     // LEFT OFF: REALIZED THAT I HAVE TO DYNAMICALLY ALLOCATE BUCKETNODE ARRAY
     // MUST THEREFORE CHANGE HOW TRAVERSALS OF IT ARE HANDLED IN INSERT FUNCTION
