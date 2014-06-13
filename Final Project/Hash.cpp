@@ -46,14 +46,14 @@ int Hash::getNextPrime(int currentprime)
     return nextprime;
 }
 
-/*Data Hash::getEntry(int searchKey) const{
+/*App Hash::getEntry(int searchKey) const{
  int i = searchKey;
  return
  }*/
 bool Hash::search(int searchKey){
     for(int i = 0; i < tableSize; i++){
         for(int j = 0; j < bucketSize; j++){
-            if(searchKey == hashTable[i].appArray[j]->appId){
+            if(searchKey == hashTable[i].appArray[j]->getUniqueKey()){
                 return true;
             }
         }
@@ -61,19 +61,19 @@ bool Hash::search(int searchKey){
     return false;
 }
 
-int Hash::hasher(int newData)
+int Hash::hasher(int newApp)
 {
-    return newData % tableSize;
+    return newApp % tableSize;
 }
 
 //***************************************************************************
-// The insert member function takes in the searchKey/index and the newData  *
+// The insert member function takes in the searchKey/index and the newApp  *
 // struct. It then traverses the respective bucket until it finds and empty *
 // location. While traversing each time it traverses is counted as a        *
 // collision.                                                               *
 //***************************************************************************
 
-bool Hash::insert(int searchKey, Data * newData)
+bool Hash::insert(int searchKey, App * newApp)
 {
     int i = 0;
     if(empty) empty = false;
@@ -97,7 +97,7 @@ bool Hash::insert(int searchKey, Data * newData)
         return false;
         
     }
-    hashTable[searchKey].appArray[i] = newData;
+    hashTable[searchKey].appArray[i] = newApp;
     return true;
 }
 
@@ -110,11 +110,11 @@ void Hash::displayHash()
     cout << "Hash Contents:" << endl << "---------------" << endl;
     for(int i = 0; i < tableSize; i++){
         for(int j = 0; j < bucketSize; j++){
-            if(hashTable[i].appArray[j]->appId){
-                cout << "App Id: " << hashTable[i].appArray[j]->appId << endl;
-                cout << "\tName: " << hashTable[i].appArray[j]->appName << endl;
-                cout << "\tPublisher: " << hashTable[i].appArray[j]->appPublisher << endl;
-                cout << "\tCategory: " << hashTable[i].appArray[j]->category << endl;
+            if(hashTable[i].appArray[j]->getUniqueKey()){
+                cout << "App Id: " << hashTable[i].appArray[j]->getUniqueKey() << endl;
+                cout << "\tName: " << hashTable[i].appArray[j]->getAppName() << endl;
+                cout << "\tPublisher: " << hashTable[i].appArray[j]->getAuthor() << endl;
+                cout << "\tCategory: " << hashTable[i].appArray[j]->getCategory() << endl;
                 cout << "-----------------------" << endl;
             }
         }
@@ -132,11 +132,13 @@ void Hash::printHash()
         for(int j = 0; j < bucketSize; j++){
             if(j){cout << "\t\tLocation " << j << ":";}
             else cout << "Location " << j << ":";
-            cout << " App Id: " << hashTable[i].appArray[j]->appId << endl;
-            cout << "\t\t\tName: " << hashTable[i].appArray[j]->appName << endl;
-            cout << "\t\t\tPublisher: " << hashTable[i].appArray[j]->appPublisher << endl;
-            cout << "\t\t\tCategory: " << hashTable[i].appArray[j]->category << endl;
-            cout << "-----------------------" << endl;
+            if (hashTable[i].appArray[j]) {
+                cout << " App Id: " << hashTable[i].appArray[j]->getUniqueKey() << endl;
+                cout << "\t\t\tName: " << hashTable[i].appArray[j]->getAppName() << endl;
+                cout << "\t\t\tPublisher: " << hashTable[i].appArray[j]->getAuthor() << endl;
+                cout << "\t\t\tCategory: " << hashTable[i].appArray[j]->getCategory();
+            }
+            cout << "\n-----------------------\n";
             
         }
     }
@@ -174,8 +176,8 @@ int Hash::fullCount(){
 // increase the bucket array size by one. Table size will be double and then*
 // incremented to the next prime number for most effective hashing using    *
 // modulus operations. Next all of the bucketsize full boolean values will  *
-// be reset to false. Then the data structure will be replicated (array of  *
-// buckets) and each value from the original data structure will be rehash  *
+// be reset to false. Then the App structure will be replicated (array of  *
+// buckets) and each value from the original App structure will be rehash  *
 // using the hasher function and being relocated to its respective place    *
 // in the newly rehashed hashtable.                                         *
 //***************************************************************************
@@ -195,7 +197,7 @@ void Hash::rehash(){
     for (int i = 0; i < former_tableSize; i++)
         for (int j = 0; j < bucketSize; j++)
             if (hashTable[i].appArray[j])
-                reHashTable->insert(hasher(hashTable[i].appArray[j]->appId),
+                reHashTable->insert(hasher(hashTable[i].appArray[j]->getUniqueKey()),
                                     hashTable[i].appArray[j]);
     //does rehashing with tableSize already set to new value.
     

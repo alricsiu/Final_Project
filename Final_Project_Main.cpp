@@ -25,6 +25,7 @@ using namespace std;
 #include "BST.h"
 //#include "Hash.h"
 #include "App.h"
+#include "Hash.h"
 
 const char INSERT_CHOICE = 'I',
 DELETE_CHOICE = 'D',
@@ -60,6 +61,8 @@ char getValidChar();
 int getValidKey();
 void getValidRange(int &, int &);
 
+void parsetoBinaryTree(BST *, Hash *, ifstream &);
+
 //////////
 // Main //
 //////////
@@ -76,7 +79,7 @@ int main()
 
     cout<<"Loaded Input file: Data.txt\n";
 
-    inputFile.open("Data.txt");
+    inputFile.open("/Users/joshuapham/Desktop/data_forHW5.txt");
     if (!inputFile)
     {
         cout << "Error opening input.txt!\n";
@@ -84,8 +87,9 @@ int main()
     }
 
     BST *BSTTree = new BST();
-//    parsetoBinaryTree(BSTTree, inputFile);
-
+    Hash *hash = new Hash;
+    parsetoBinaryTree(BSTTree, hash, inputFile);
+    
     inputFile.close();
     
     char choice;    // To hold a menu choice
@@ -121,6 +125,7 @@ int main()
             case PRINT_HASH_LIST:
             {
                 cout<<"Print hash list";
+                hash->printHash();
             }
                 break;
             case PRINT_KEY_LIST:
@@ -131,10 +136,10 @@ int main()
             case PRINT_TREE_CHOICE:
             {
                 cout<<endl<<"Binary Search Tree displayed below:"<<endl<<endl;
-//                if(BSTTree->getCount())
-//                BSTTree->printTree(BSTTree->getRoot(), 0);
-//                else
-//                    cout<<"\t BST Tree is empty."<<endl<<endl;
+                if(BSTTree->getCount())
+                    BSTTree->BST_print();
+                else
+                    cout<<"\t BST Tree is empty."<<endl<<endl;
             }
                 break;
             case SAVE_TO_FILE_CHOICE:
@@ -304,17 +309,19 @@ int getValidKey()
 }
 
 
-
 //////////////////////
 //ParseToBinaryTree //
 //////////////////////
 /**
  * Parses the input file into the binary tree. Creates an app object for each entry and inserts
  * the entry into the binary search tree using its unique key.
+ 
+ EDIT: now also inserts into Hash Table for each insert.
+ 
  * @param tree      The BST tree to insert the entries into.
  * @param inputFile The inputfile with the entries. Entries must span 4 lines, separated by new lines. 
  */
-void parsetoBinaryTree(BST *tree, ifstream &inputFile)
+void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile)
 {
     char c;
 
@@ -362,7 +369,8 @@ void parsetoBinaryTree(BST *tree, ifstream &inputFile)
                     istringstream ( uniquekey ) >> key;
                     
                     App *app = new App(key, appName, author, category);
-//                    tree->insert(app);
+                    tree->insert(app);
+                    hash->insert(hash->hasher(key), app);
                     
                     counter = 0;
 
@@ -378,6 +386,7 @@ void parsetoBinaryTree(BST *tree, ifstream &inputFile)
     }
     
 }
+
 
 
 ////////////////////////////

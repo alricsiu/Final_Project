@@ -11,15 +11,16 @@
 
 #include <iostream>
 #include <string>
+#include "App.h"
 using namespace std;
 
-struct Data {
+/*struct Data {
     int appId;
     string appName;
     string appPublisher;
     string category;
     
-};
+};*/
 
 const int bucketSize = 3;
 
@@ -27,7 +28,7 @@ class Hash{
     struct bucketNode {
         bool full = false;
         int count;
-        Data * appArray[bucketSize];
+        App * appArray[bucketSize];
     };
 private:
     int tableSize = 31;
@@ -42,6 +43,8 @@ private:
         2267,2339,2393,2579,2713,3541,4111,5051,6011,7159,7919};
     //make array dynamically allocate hashtable pointer dynamically allocate in constructor
     // bucketNode *hashTable = new bucketNode[31];
+    bucketNode * _getHashTable()
+    { return hashTable; }
     
 public:
     Hash(); // constructor destructor
@@ -52,8 +55,8 @@ public:
     int getEntryCount();//
     void incrementEntryCount();//
     int getNextPrime(int currentprime);//
-    Data getEntry(int searchKey) const;//search key index
-    bool insert(int searchKey, Data * newData); //inserts newData into hashTable
+    App getEntry(int searchKey) const;//search key index
+    bool insert(int searchKey, App * newApp); //inserts newApp into hashTable
     bool remove(int searchKey);
     bool isEmpty();
     bool search(int searchKey);//
@@ -61,8 +64,8 @@ public:
     void printHash();//
     void showStats();//
     int fullCount();//
-    int hasher(int newData);//
-    void rehash(Hash *);//
+    int hasher(int newApp);//
+    void rehash();//
     
     
     
