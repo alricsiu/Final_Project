@@ -79,7 +79,7 @@ int main()
 
     cout<<"Loaded Input file: Data.txt\n";
 
-    inputFile.open("/Users/joshuapham/Desktop/data_forHW5.txt");
+    inputFile.open("/Users/joshuapham/Desktop/data_forHW4.txt");
     if (!inputFile)
     {
         cout << "Error opening input.txt!\n";
@@ -91,6 +91,12 @@ int main()
     parsetoBinaryTree(BSTTree, hash, inputFile);
     
     inputFile.close();
+    
+    //REHASH TEST:
+    hash->printHash();
+    cout << "^^^^ ABOVE IS BEFORE REHASH\n";
+    hash->rehash();
+    hash->printHash();
     
     char choice;    // To hold a menu choice
     
@@ -369,8 +375,12 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile)
                     istringstream ( uniquekey ) >> key;
                     
                     App *app = new App(key, appName, author, category);
-                    tree->insert(app);
-                    hash->insert(hash->hasher(key), app);
+                    //tree->insert(app);
+                    if (!hash->insert(hash->hasher(key), app))
+                    {
+                        hash->rehash();
+                        parsetoBinaryTree(tree, hash, inputFile);
+                    }
                     
                     counter = 0;
 

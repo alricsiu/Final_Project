@@ -37,13 +37,18 @@ void Hash::incrementEntryCount()
 int Hash::getNextPrime(int currentprime)
 {
     //Doubles current prime number for rehash
-    int nextprime = currentprime*2;
+    
+    // getNextPrime traverses the prime array until the array
+    // element is greater than two times the current table size (also a prime)
+    
+    int dbl_currentprime = currentprime*2;
     int count = 0;
-    //increments doubled prime by one until it matches an included prime number
-    while(nextprime != primes[count]){
-        nextprime++;
+    
+
+    while(dbl_currentprime > primes[count] && count < 100){
+        count++;
     }
-    return nextprime;
+    return primes[count];
 }
 
 /*App Hash::getEntry(int searchKey) const{
@@ -184,7 +189,8 @@ int Hash::fullCount(){
 void Hash::rehash(){
     // call rehash as member function of original hashtable
     int former_tableSize = tableSize;
-    tableSize = getNextPrime(tableSize*2);
+    cout << "former tablesize: " << former_tableSize << endl;
+    tableSize = getNextPrime(tableSize);
     cout << "New TableSize:" << tableSize; // increase table size
     
     // LEFT OFF: REALIZED THAT I HAVE TO DYNAMICALLY ALLOCATE BUCKETNODE ARRAY
@@ -205,6 +211,8 @@ void Hash::rehash(){
     // run it through the hashtable and take each app
     // run the hasher function on it.
     // insert and transfer all fields
+    
+    delete hashTable;
     
     hashTable = reHashTable->_getHashTable();
     
