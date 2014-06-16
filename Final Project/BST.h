@@ -1,10 +1,7 @@
-//
-//  BST.h
-//  TeamProject
-//
+
 //  Created by Fangyuan Xing on 5/26/14.
 //  Copyright (c) 2014 Emily. All rights reserved.
-//
+//  BST.h
 
 #ifndef __TeamProject__BST__
 #define __TeamProject__BST__
@@ -37,63 +34,123 @@ class BST
     int count;
     
 public:
-    // constructor
+    //***************************************************************************
+    //   constructor
+    //
+    //***************************************************************************
     BST();
     
-    // destructor
+    //***************************************************************************
+    //  destructor calls private funtion _destory to delete the whole tree
+    //
+    //***************************************************************************
     ~BST();
     
-    // for test getting count
+    //***************************************************************************
+    //  This funtion gets the count
+    //  returns count
+    //***************************************************************************
     int getCount()
     {
         return count;
     }
     
-    // insert node to the tree
+    //***************************************************************************
+    //  This function calls the private function _insert to insert data
+    //
+    //***************************************************************************
     void BST_insert(Data* data);
     
-    // add new node to the tree
+    //***************************************************************************
+    //  This function calls the private function _insert to add data
+    //
+    //***************************************************************************
     void BST_add(Data* data);
     
-    // delete a node
+    //***************************************************************************
+    //  This function deletes a node by calling the private function _search to
+    //  search target first, and if found, calls private function _delete, print
+    //  error message if not found and return
+    //***************************************************************************
     void BST_delete(int target);
     
-    // search by a unique key
+    //***************************************************************************
+    //  This function searches by a unique key
+    //  It calls the private function _search to check target, returns true if
+    //  found, returns false if not
+    //***************************************************************************
     bool BST_search(int target);
     
-    // list data in key sequence(sorted)
+    //***************************************************************************
+    //  This funtion prints data in key sequence by calling private funtion
+    //  __InorderTraverse
+    //***************************************************************************
     void BST_list();
     
-    // print tree as an indented list
+    //***************************************************************************
+    //  This funtion prints indented tree by calling private funtion _printTree
+    //
+    //***************************************************************************
     void BST_print() const;
     
     
 private:
-    // find out this node is it a left node of its parent
+    //***************************************************************************
+    //   This funtion checks if the node is a left node of its parent
+    //   The parameter is BST_Node* target
+    //   returns true if it is
+    //***************************************************************************
     bool _isLeftChild(BST_Node* target);
     
-    // find out the smallest node in right subtree
+    //***************************************************************************
+    //  This funtion finds out the samllest node in right subtree
+    //  The parameter is BST_Node* target
+    //  returns the pointer of BST_Node*
+    //***************************************************************************
     BST_Node* _SmallestNodeinRightSubtree(BST_Node* target);
     
-    // find out the largest node in left subtree
+    //***************************************************************************
+    //  This funtion finds out the largest node in left subtree
+    //  The parameter is BST_Node* target
+    //  returns the pointer of BST_Node*
+    //***************************************************************************
     BST_Node* _LargestNodeinRightSubtree(BST_Node* target);
     
-    // insert
+    //***************************************************************************
+    //  This funtion inserts a node to the tree
+    //  The parameter is Data* data
+    //***************************************************************************
     void _insert(Data* data);
     
-    // delete
+    //***************************************************************************
+    //  This funtion deletes a node from the tree
+    //  The parameter is BST_Node* target
+    //***************************************************************************
     void _delete(BST_Node* target);
     
-    // search
+    //***************************************************************************
+    //  This funtion searches a node by an unique key
+    //  The parameter is int target
+    //  returns the pointer if found, returns NULL if not
+    //***************************************************************************
     BST_Node* _search(int target);
     
-    // inorder traversal - stack
+    //***************************************************************************
+    //  This funtion is inorder traverasl
+    //  The parameter is BST_Node* root
+    //***************************************************************************
     void _InorderTraverse(BST_Node* root) const;
     
-    // destroy tree
+    //***************************************************************************
+    //  This funtion deletes all the nodes in the tree
+    //  The parameter is BST_Node* root
+    //***************************************************************************
     void _destroy(BST_Node *root);
     
-    // print tree as an indented list
+    //***************************************************************************
+    //  This funtion prints tree as an indented list
+    //  The parameters are BST_Node* root and int level
+    //***************************************************************************
     void _printTree(BST_Node* root, int level) const;
 };
 

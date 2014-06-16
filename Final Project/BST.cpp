@@ -1,43 +1,55 @@
-//
-//  BST.cpp
-//  TeamProject
-//
+
 //  Created by Fangyuan Xing on 5/26/14.
 //  Copyright (c) 2014 Emily. All rights reserved.
-//
+//  BST.cpp
 
 #include "BST.h"
-#include "Queue.h"
 #include "Stack.h"
 using namespace std;
 
-// constructor
+//***************************************************************************
+//   constructor
+//
+//***************************************************************************
 BST::BST()
 {
     root = NULL;
     count = 0;
 }
 
-// destructor
+//***************************************************************************
+//  destructor calls private funtion _destory to delete the whole tree
+//
+//***************************************************************************
 BST::~BST()
 {
     if(root)
         _destroy(root);
 }
 
-// insert node to the tree
+//***************************************************************************
+//  This function calls the private function _insert to insert data
+//
+//***************************************************************************
 void BST::BST_insert(Data* data)
 {
     _insert(data);
 }
 
-// add new node to the tree
+//***************************************************************************
+//  This function calls the private function _insert to add data
+//
+//***************************************************************************
 void BST::BST_add(Data* data)
 {
     _insert(data);
 }
 
-// delete a node
+//***************************************************************************
+//  This function deletes a node by calling the private function _search to
+//  search target first, and if found, calls private function _delete, print
+//  error message if not found and return
+//***************************************************************************
 void BST::BST_delete(int target)
 {
     BST_Node* found = _search(target);
@@ -50,7 +62,11 @@ void BST::BST_delete(int target)
     _delete(found);
 }
 
-// search by a unique key
+//***************************************************************************
+//  This function searches by a unique key
+//  It calls the private function _search to check target, returns true if
+//  found, returns false if not
+//***************************************************************************
 bool BST::BST_search(int target)
 {
     BST_Node *found = _search(target);
@@ -67,22 +83,34 @@ bool BST::BST_search(int target)
     return false;
 }
 
-// list data in key sequence(sorted)
+//***************************************************************************
+//  This funtion prints data in key sequence by calling private funtion
+//  __InorderTraverse
+//***************************************************************************
 void BST::BST_list()
 {
     _InorderTraverse(root);
 }
 
-// print tree as an indented list
+//***************************************************************************
+//  This funtion prints indented tree by calling private funtion _printTree
+//
+//***************************************************************************
 void BST::BST_print() const
 {
     _printTree(root, 1);
 }
 
 
-//  **************************    PRIVATE    ************************************  //
 
-// insert
+//***************************    PRIVATE    ************************************//
+
+
+
+//***************************************************************************
+//  This funtion inserts a node to the tree
+//  The parameter is Data* data
+//***************************************************************************
 void BST::_insert(Data* data)
 {
     BST_Node *newNode = new BST_Node;
@@ -127,13 +155,22 @@ void BST::_insert(Data* data)
     count++;
 }
 
-// find out this node is it a left node of its parent
+
+//***************************************************************************
+//   This funtion checks if the node is a left node of its parent
+//   The parameter is BST_Node* target
+//   returns true if it is
+//***************************************************************************
 bool BST::_isLeftChild(BST_Node* target)
 {
     return target -> data -> ID < target -> parent -> data -> ID;
 }
 
-// find out the smallest node in right subtree
+//***************************************************************************
+//  This funtion finds out the samllest node in right subtree
+//  The parameter is BST_Node* target
+//  returns the pointer of BST_Node*
+//***************************************************************************
 BST::BST_Node* BST::_SmallestNodeinRightSubtree(BST_Node* target)
 {
     while(target -> left)
@@ -143,7 +180,11 @@ BST::BST_Node* BST::_SmallestNodeinRightSubtree(BST_Node* target)
     return target;
 }
 
-// find out the largest node in left subtree
+//***************************************************************************
+//  This funtion finds out the largest node in left subtree
+//  The parameter is BST_Node* target
+//  returns the pointer of BST_Node*
+//***************************************************************************
 BST::BST_Node* BST::_LargestNodeinRightSubtree(BST_Node* target)
 {
     while(target -> right)
@@ -153,7 +194,11 @@ BST::BST_Node* BST::_LargestNodeinRightSubtree(BST_Node* target)
     return target;
 }
 
-// delete
+
+//***************************************************************************
+//  This funtion deletes a node from the tree
+//  The parameter is BST_Node* target
+//***************************************************************************
 void BST::_delete(BST_Node* target)
 {
     // target has both left and right children
@@ -287,7 +332,12 @@ void BST::_delete(BST_Node* target)
 
 }
 
-// search
+
+//***************************************************************************
+//  This funtion searches a node by an unique key
+//  The parameter is int target
+//  returns the pointer if found, returns NULL if not
+//***************************************************************************
 BST::BST_Node* BST::_search(int target)
 {
     if (!root) // tree is empty
@@ -309,7 +359,11 @@ BST::BST_Node* BST::_search(int target)
     return NULL; // not found
 }
 
-// inorder traversal - stack
+
+//***************************************************************************
+//  This funtion is inorder traverasl
+//  The parameter is BST_Node* root
+//***************************************************************************
 void BST::_InorderTraverse(BST_Node* root) const
 {
     if (root == NULL)
@@ -341,7 +395,11 @@ void BST::_InorderTraverse(BST_Node* root) const
     }
 }
 
-// destroy tree
+
+//***************************************************************************
+//  This funtion deletes all the nodes in the tree
+//  The parameter is BST_Node* root
+//***************************************************************************
 void BST::_destroy(BST_Node *root)
 {
     if (root)
@@ -354,7 +412,11 @@ void BST::_destroy(BST_Node *root)
     return;
 }
 
-// print tree as an indented list
+
+//***************************************************************************
+//  This funtion prints tree as an indented list
+//  The parameters are BST_Node* root and int level
+//***************************************************************************
 void BST::_printTree(BST_Node* root, int level) const
 {
     if (root)
