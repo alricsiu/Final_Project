@@ -65,7 +65,7 @@ public:
     void showStats();//
     int fullCount();//
     int hasher(int newApp);//
-    void rehash();//
+    bool rehash();//
     
     
     

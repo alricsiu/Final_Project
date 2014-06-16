@@ -186,7 +186,7 @@ int Hash::fullCount(){
 // using the hasher function and being relocated to its respective place    *
 // in the newly rehashed hashtable.                                         *
 //***************************************************************************
-void Hash::rehash(){
+bool Hash::rehash(){
     // call rehash as member function of original hashtable
     int former_tableSize = tableSize;
     cout << "former tablesize: " << former_tableSize << endl;
@@ -203,8 +203,10 @@ void Hash::rehash(){
     for (int i = 0; i < former_tableSize; i++)
         for (int j = 0; j < bucketSize; j++)
             if (hashTable[i].appArray[j])
-                reHashTable->insert(hasher(hashTable[i].appArray[j]->getUniqueKey()),
-                                    hashTable[i].appArray[j]);
+                if (!reHashTable->insert(hasher(hashTable[i].appArray[j]->getUniqueKey()),
+                                         hashTable[i].appArray[j]))
+                    return false;
+                    
     //does rehashing with tableSize already set to new value.
     
     //Alright LOOKS good probably better than my hash algorithm but here it is anyways:
@@ -241,6 +243,7 @@ void Hash::rehash(){
     
     hashTable = reHashTable->_getHashTable();
     
+    return true;
     //pass reference back to pointer in main
     //
     

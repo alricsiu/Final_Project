@@ -378,10 +378,12 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
                     istringstream ( uniquekey ) >> key;
                     
                     App *app = new App(key, appName, author, category);
+                    bool rehash_success = false;
                     //tree->insert(app);
                     if (!hash->insert(hash->hasher(key), app))
                     {
-                        hash->rehash();
+                        while(!rehash_success)
+                            rehash_success = hash->rehash(); // bubbles the failed insert all the way to the top, forcing a rehash. (and rehash modifies self)
                         hash->showStats();
                         inputFile.close();
                         inputFile.open(filename);
