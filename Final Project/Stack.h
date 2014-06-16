@@ -1,3 +1,6 @@
+
+//  Stack.h
+
 /**~*~*
  Stack template
  *~**/
