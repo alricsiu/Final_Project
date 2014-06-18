@@ -109,7 +109,6 @@ bool Hash::insert(App * newApp)
         else
         {
             hashTable[searchKey]->appArray[i] = newApp;
-            collisionCount++;
 //            cout << "Collision count incremented to " << collisionCount << endl;
             insertSuccess = true;
             hashTable[searchKey]->count++; //increments number of valid elements per bucket.
@@ -126,6 +125,14 @@ bool Hash::insert(App * newApp)
         hashTable[searchKey]->count++;
         entryCount++; // updates
     }
+    
+    // after successful insert, check need for rehash
+    if (insertSuccess && (getLoadFactor() > 75) )
+    {
+        rehash();
+        collisionCount++;
+    }
+    
     return insertSuccess;
 }
 
@@ -188,6 +195,7 @@ void Hash::printEVERYTHING()
             cout << "NULL" << endl;
     }
 }
+
 //***************************************************************************
 // ShowStats function shows the useful hashTable statistics such as         *
 // collision frequency, load factor, and number of buckets full.             *
@@ -198,7 +206,7 @@ void Hash::showStats()
     cout << "----------------" << endl;
     cout << "Collision Frequency: " << collisionCount << endl;
     cout << entryCount << " buckets have data out of " << tableSize << " buckets\n";
-    cout << "Load Factor: " << (double)entryCount/(double)tableSize << endl;
+    cout << "Load Factor: " << getLoadFactor() << endl;
     cout << "Buckets Full: " << fullCount() << endl << endl;
     
 }

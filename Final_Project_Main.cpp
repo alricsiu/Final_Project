@@ -379,14 +379,15 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
                     App *app = new App(key, appName, author, category);
                     bool rehash_success = false;
                     //tree->insert(app);
-                    if (!hash->insert(app))
-                    {
-                        while(!rehash_success) {
-                            hash->showStats();
-                            rehash_success = hash->rehash(); // bubbles the failed insert all the way to the top, forcing a rehash. (and rehash modifies self)
-                        }
-                    }
-                    
+                    hash->insert(app);
+//                    if (!hash->insert(app))
+//                    {
+//                        while(!rehash_success) {
+//                            rehash_success = hash->rehash(); // bubbles the failed insert all the way to the top, forcing a rehash. (and rehash modifies self)
+//                            hash->showStats();
+//                        }
+//                    }
+//                    
                     
                     
                     counter = 0;
@@ -401,6 +402,8 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
             buffer = buffer + c;
         }
     }
+    
+    // after the data is all entered, rehash if load factor exceeds 75%.
     
 }
 
