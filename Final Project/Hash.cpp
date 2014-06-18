@@ -100,16 +100,15 @@ bool Hash::insert(App * newApp)
     // if over 75 then rehash
     if (hashTable[searchKey])
     {
-        while (i < 3 && hashTable[searchKey]->appArray[i]){
+        while (i < 3 && hashTable[searchKey]->appArray[i])
             i++;
+        if (i)
             collisionCount++;
-            }
         if(i >= 3){
             hashTable[searchKey]->full = true;
             cout<< "Bucket " << searchKey << " is full." << endl;
         }
-        else
-        {
+        else {
             hashTable[searchKey]->appArray[i] = newApp;
 //            cout << "Collision count incremented to " << collisionCount << endl;
             insertSuccess = true;
@@ -118,6 +117,7 @@ bool Hash::insert(App * newApp)
     }
     else {
         hashTable[searchKey] = new bucketNode;
+        hashTable[searchKey]->count = 1;
         for (int j = 0; j < bucketSize; j++)
             hashTable[searchKey]->appArray[j] = nullptr;
         hashTable[searchKey]->appArray[i] = newApp;
@@ -129,10 +129,10 @@ bool Hash::insert(App * newApp)
     }
     
     // after successful insert, check need for rehash
-    if (insertSuccess && (getLoadFactor() > 75) )
-    {
-        rehash();
-        collisionCount++;
+    if (insertSuccess) {
+        dataCount++;
+        if (getLoadFactor() > 75)
+            rehash();
     }
     
     return insertSuccess;
@@ -184,20 +184,6 @@ void Hash::printHash()
     
 }
 
-void Hash::printEVERYTHING()
-{
-    for (int i = 0; i < tableSize; i++) {
-        if (hashTable[i])
-        {
-            cout << hashTable[i] << endl;
-            for (int j = 0; j < bucketSize; j++)
-                cout << "\t" << hashTable[i]->appArray[j] << endl;
-        }
-        else
-            cout << "NULL" << endl;
-    }
-}
-
 //***************************************************************************
 // ShowStats function shows the useful hashTable statistics such as         *
 // collision frequency, load factor, and number of buckets full.             *
@@ -206,7 +192,7 @@ void Hash::showStats()
 {
     cout << "Hash Statistics:" <<endl;
     cout << "----------------" << endl;
-    cout << "Collision Frequency: " << collisionCount << endl;
+    cout << "Collision Frequency: " << collisionCount << " of " << dataCount << " elements.\n";
     cout << entryCount << " buckets have data out of " << tableSize << " buckets\n";
     cout << "Load Factor: " << getLoadFactor() << endl;
     cout << "Buckets Full: " << fullCount() << endl << endl;
@@ -314,6 +300,7 @@ Hash::Hash()
     hashTable = new bucketNode * [tableSize];
     for (int i = 0; i < tableSize; i++)
         hashTable[i] = nullptr; // safety
+    dataCount = 0;
 }
 
 Hash::Hash(int tableSize)
@@ -322,4 +309,5 @@ Hash::Hash(int tableSize)
     this->tableSize = tableSize;
     for (int i = 0; i < tableSize; i++)
         hashTable[i] = nullptr; // safety
+    dataCount = 0;
 }
