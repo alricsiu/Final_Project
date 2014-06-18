@@ -75,9 +75,7 @@ int Hash::hasher(int newApp)
     int digit8 = newApp / 10 % 10;
     int digit9 = newApp % 10;
     index += digit1 * 1000 + digit3 * 100 + digit8 * 10 + digit9;
-    cout << index;
     index %= tableSize;
-    cout << " " << tableSize << endl;
     return index;
 }
 
@@ -163,11 +161,11 @@ void Hash::printHash()
             if(j){cout << "\t\tLocation " << j << ":";}
             else cout << "Location " << j << ":";
             if (hashTable[i]) {
-                if (hashTable[i]->appArray[i]) {
-                cout << " App Id: " << hashTable[i]->appArray[j]->getUniqueKey() << endl;
-                cout << "\t\t\tName: " << hashTable[i]->appArray[j]->getAppName() << endl;
-                cout << "\t\t\tPublisher: " << hashTable[i]->appArray[j]->getAuthor() << endl;
-                cout << "\t\t\tCategory: " << hashTable[i]->appArray[j]->getCategory();
+                if (hashTable[i]->appArray[j]) {
+                    cout << " App Id: " << hashTable[i]->appArray[j]->getUniqueKey() << endl;
+                    cout << "\t\t\tName: " << hashTable[i]->appArray[j]->getAppName() << endl;
+                    cout << "\t\t\tPublisher: " << hashTable[i]->appArray[j]->getAuthor() << endl;
+                    cout << "\t\t\tCategory: " << hashTable[i]->appArray[j]->getCategory();
                 }
             }
             cout << "\n-----------------------\n";
@@ -229,7 +227,7 @@ int Hash::fullCount(){
 // using the hasher function and being relocated to its respective place    *
 // in the newly rehashed hashtable.                                         *
 //***************************************************************************
-bool Hash::rehash(Hash * newHash){
+bool Hash::rehash(){
     // call rehash as member function of original hashtable
     int former_tableSize = tableSize;
     cout << "former tablesize: " << former_tableSize << endl;
@@ -247,11 +245,8 @@ bool Hash::rehash(Hash * newHash){
         if (hashTable[i])
             for (int j = 0; j < bucketSize; j++)
                 if (hashTable[i]->appArray[j])
-                {
-//                    bucketNode * tempApp = hashTable[i];
                     if (!reHashTable->insert(hashTable[i]->appArray[j]))
                         return false;
-                }
     
     //does rehashing with tableSize already set to new value.
     
@@ -285,7 +280,8 @@ bool Hash::rehash(Hash * newHash){
     // run the hasher function on it.
     // insert and transfer all fields
     
-    newHash = reHashTable;
+    delete hashTable;
+    hashTable = reHashTable->hashTable;
     
     
     return true;

@@ -382,12 +382,12 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
                     if (!hash->insert(app))
                     {
                         while(!rehash_success) {
-//                            hash->showStats();
-                            rehash_success = hash->rehash(hash); // bubbles the failed insert all the way to the top, forcing a rehash. (and rehash modifies self)
+                            hash->showStats();
+                            rehash_success = hash->rehash(); // bubbles the failed insert all the way to the top, forcing a rehash. (and rehash modifies self)
                         }
-                        //parsetoBinaryTree(tree, hash, inputFile, filename);
-            
                     }
+                    
+                    
                     
                     counter = 0;
 
