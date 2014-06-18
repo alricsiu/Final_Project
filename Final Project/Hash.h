@@ -62,6 +62,8 @@ public:
     bool search(int searchKey);//
     void displayHash();//
     void printHash();//
+    double getLoadFactor()
+    { return double(entryCount) / double(tableSize) * 100; }
     void showStats();//
     int fullCount();//
     int hasher(int newApp);//
