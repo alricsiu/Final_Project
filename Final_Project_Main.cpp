@@ -79,7 +79,7 @@ int main()
 
     cout<<"Loaded Input file: Data.txt\n";
 
-    string filename = "/Users/joshuapham/Desktop/data_forHW4.txt";
+    string filename = "data2.txt";
     
     inputFile.open(filename);
     if (!inputFile)

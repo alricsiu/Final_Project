@@ -285,6 +285,18 @@ bool Hash::rehash(){
     //
     
 }
+
+//******************************************************************
+// The shift function is designed to shift all entries in a bucket *
+// after an element is deleted from the hashtable. It essentially  *
+// fills the gaps and shifts everything.                           *
+//******************************************************************
+void Hash::shift()
+{
+    
+}
+
+
 //Constructor
 Hash::Hash()
 {
