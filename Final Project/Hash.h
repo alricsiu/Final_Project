@@ -31,8 +31,8 @@ class Hash{
         App * appArray[bucketSize];
     };
 private:
-    int tableSize = 31;
-    bucketNode * hashTable;
+    int tableSize;
+    bucketNode ** hashTable;
     int collisionCount;
     int entryCount; // keeps track of entry count
     bool empty;
@@ -43,7 +43,7 @@ private:
         2267,2339,2393,2579,2713,3541,4111,5051,6011,7159,7919};
     //make array dynamically allocate hashtable pointer dynamically allocate in constructor
     // bucketNode *hashTable = new bucketNode[31];
-    bucketNode * _getHashTable()
+    bucketNode ** _getHashTable()
     { return hashTable; }
     
 public:
@@ -56,7 +56,7 @@ public:
     void incrementEntryCount();//
     int getNextPrime(int currentprime);//
     App getEntry(int searchKey) const;//search key index
-    bool insert(int searchKey, App * newApp); //inserts newApp into hashTable
+    bool insert(App * newApp); //inserts newApp into hashTable
     bool remove(int searchKey);
     bool isEmpty();
     bool search(int searchKey);//
@@ -65,7 +65,8 @@ public:
     void showStats();//
     int fullCount();//
     int hasher(int newApp);//
-    bool rehash();//
+    bool rehash(Hash *);//
+    void printEVERYTHING();
     
     
     

@@ -95,10 +95,10 @@ int main()
     inputFile.close();
     
     //REHASH TEST:
-    hash->printHash();
-    cout << "^^^^ ABOVE IS BEFORE REHASH\n";
-    hash->rehash();
-    hash->printHash();
+//    hash->printHash();
+//    cout << "^^^^ ABOVE IS BEFORE REHASH\n";
+//    hash->rehash();
+//    hash->printHash();
     
     char choice;    // To hold a menu choice
     
@@ -376,18 +376,17 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
                     
                     int key;
                     istringstream ( uniquekey ) >> key;
-                    
                     App *app = new App(key, appName, author, category);
                     bool rehash_success = false;
                     //tree->insert(app);
-                    if (!hash->insert(hash->hasher(key), app))
+                    if (!hash->insert(app))
                     {
-                        while(!rehash_success)
-                            rehash_success = hash->rehash(); // bubbles the failed insert all the way to the top, forcing a rehash. (and rehash modifies self)
-                        hash->showStats();
-                        inputFile.close();
-                        inputFile.open(filename);
-                        parsetoBinaryTree(tree, hash, inputFile, filename);
+                        while(!rehash_success) {
+//                            hash->showStats();
+                            rehash_success = hash->rehash(hash); // bubbles the failed insert all the way to the top, forcing a rehash. (and rehash modifies self)
+                        }
+                        //parsetoBinaryTree(tree, hash, inputFile, filename);
+            
                     }
                     
                     counter = 0;
