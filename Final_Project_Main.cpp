@@ -79,7 +79,7 @@ int main()
 
     cout<<"Loaded Input file: Data.txt\n";
 
-    string filename = "/Users/joshuapham/Desktop/data_forHW4.txt";
+    string filename = "data.txt";
     
     inputFile.open(filename);
     if (!inputFile)
@@ -380,15 +380,6 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
                     bool rehash_success = false;
                     //tree->insert(app);
                     hash->insert(app);
-//                    if (!hash->insert(app))
-//                    {
-//                        while(!rehash_success) {
-//                            rehash_success = hash->rehash(); // bubbles the failed insert all the way to the top, forcing a rehash. (and rehash modifies self)
-//                            hash->showStats();
-//                        }
-//                    }
-//                    
-                    
                     
                     counter = 0;
 

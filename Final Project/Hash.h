@@ -34,7 +34,8 @@ private:
     int tableSize;
     bucketNode ** hashTable;
     int collisionCount;
-    int entryCount; // keeps track of entry count
+    int entryCount; // keeps track of number of table elements with data in them.
+    int dataCount; // keeps track of number of data points in the table.
     bool empty;
     //random primes. consider including all first 1000 primes.
     int primes [100] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,
@@ -68,7 +69,6 @@ public:
     int fullCount();//
     int hasher(int newApp);//
     bool rehash();//
-    void printEVERYTHING();
     
     
     
