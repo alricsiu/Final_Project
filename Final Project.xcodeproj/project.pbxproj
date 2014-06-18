@@ -28,7 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		069B195F1952515000D5A970 /* data2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = data2.txt; sourceTree = "<group>"; };
+		069B195F1952515000D5A970 /* data.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.txt; sourceTree = "<group>"; };
 		069B19611952559300D5A970 /* Final_Project_Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Final_Project_Main.cpp; sourceTree = "<group>"; };
 		069B19621952559300D5A970 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
 		069B19631952559300D5A970 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 				A8E616C519490A6A00A244B3 /* Hash.h */,
 				A8E616C619490A6A00A244B3 /* Hash.cpp */,
 				A838115419454AFB00A1712C /* Final_Project.1 */,
-				069B195F1952515000D5A970 /* data2.txt */,
+				069B195F1952515000D5A970 /* data.txt */,
 			);
 			path = "Final Project";
 			sourceTree = "<group>";
