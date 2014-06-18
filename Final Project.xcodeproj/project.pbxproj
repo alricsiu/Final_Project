@@ -7,25 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		069B19601952516400D5A970 /* data2.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 069B195F1952515000D5A970 /* data2.txt */; };
+		069B196E1952559300D5A970 /* Final_Project_Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 069B19611952559300D5A970 /* Final_Project_Main.cpp */; };
+		069B196F1952559300D5A970 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 069B19621952559300D5A970 /* App.cpp */; };
 		A838115519454AFB00A1712C /* Final_Project.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A838115419454AFB00A1712C /* Final_Project.1 */; };
-		A838115E19454C1600A1712C /* Final_Project_Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838115B19454C1600A1712C /* Final_Project_Main.cpp */; };
-		A838115F19454C1600A1712C /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838115D19454C1600A1712C /* App.cpp */; };
 		A838116419454D8800A1712C /* BST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838116319454D8800A1712C /* BST.cpp */; };
 		A8E616C719490A6A00A244B3 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E616C619490A6A00A244B3 /* Hash.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		069B195E1952511400D5A970 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-				069B19601952516400D5A970 /* data2.txt in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A838114D19454AFB00A1712C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -40,11 +29,11 @@
 
 /* Begin PBXFileReference section */
 		069B195F1952515000D5A970 /* data2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = data2.txt; sourceTree = "<group>"; };
+		069B19611952559300D5A970 /* Final_Project_Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Final_Project_Main.cpp; sourceTree = "<group>"; };
+		069B19621952559300D5A970 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
+		069B19631952559300D5A970 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		A838114F19454AFB00A1712C /* Final Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Final Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A838115419454AFB00A1712C /* Final_Project.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Final_Project.1; sourceTree = "<group>"; };
-		A838115B19454C1600A1712C /* Final_Project_Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Final_Project_Main.cpp; path = ../Final_Project_Main.cpp; sourceTree = "<group>"; };
-		A838115C19454C1600A1712C /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = App.h; path = ../App.h; sourceTree = "<group>"; };
-		A838115D19454C1600A1712C /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = App.cpp; path = ../App.cpp; sourceTree = "<group>"; };
 		A838116019454D8800A1712C /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		A838116219454D8800A1712C /* BST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BST.h; sourceTree = "<group>"; };
 		A838116319454D8800A1712C /* BST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BST.cpp; sourceTree = "<group>"; };
@@ -85,11 +74,11 @@
 				A838116019454D8800A1712C /* Stack.h */,
 				A838116219454D8800A1712C /* BST.h */,
 				A838116319454D8800A1712C /* BST.cpp */,
-				A838115B19454C1600A1712C /* Final_Project_Main.cpp */,
+				069B19611952559300D5A970 /* Final_Project_Main.cpp */,
+				069B19621952559300D5A970 /* App.cpp */,
+				069B19631952559300D5A970 /* App.h */,
 				A8E616C519490A6A00A244B3 /* Hash.h */,
 				A8E616C619490A6A00A244B3 /* Hash.cpp */,
-				A838115C19454C1600A1712C /* App.h */,
-				A838115D19454C1600A1712C /* App.cpp */,
 				A838115419454AFB00A1712C /* Final_Project.1 */,
 				069B195F1952515000D5A970 /* data2.txt */,
 			);
@@ -106,7 +95,6 @@
 				A838114B19454AFB00A1712C /* Sources */,
 				A838114C19454AFB00A1712C /* Frameworks */,
 				A838114D19454AFB00A1712C /* CopyFiles */,
-				069B195E1952511400D5A970 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -148,10 +136,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A838115F19454C1600A1712C /* App.cpp in Sources */,
 				A838116419454D8800A1712C /* BST.cpp in Sources */,
+				069B196F1952559300D5A970 /* App.cpp in Sources */,
 				A8E616C719490A6A00A244B3 /* Hash.cpp in Sources */,
-				A838115E19454C1600A1712C /* Final_Project_Main.cpp in Sources */,
+				069B196E1952559300D5A970 /* Final_Project_Main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

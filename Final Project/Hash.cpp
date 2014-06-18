@@ -100,8 +100,10 @@ bool Hash::insert(App * newApp)
     // if over 75 then rehash
     if (hashTable[searchKey])
     {
-        while (i < 3 && hashTable[searchKey]->appArray[i])
+        while (i < 3 && hashTable[searchKey]->appArray[i]){
             i++;
+            collisionCount++;
+            }
         if(i >= 3){
             hashTable[searchKey]->full = true;
             cout<< "Bucket " << searchKey << " is full." << endl;
