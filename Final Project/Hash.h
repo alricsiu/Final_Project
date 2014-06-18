@@ -36,7 +36,7 @@ private:
     int collisionCount;
     int entryCount; // keeps track of entry count
     bool empty;
-    //random primes. consider including all first 1000 primes.
+    //random primes.
     int primes [100] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,
         83,89, 97, 101, 103,107,109,113,127,131,137,139,149,151,157,163,199,263, 317,383,443,503,577,641,701,769,839
         ,911,983,1049,1109,1193,1277,1321,1429,1487,1559,1619,1783,1871,1949,2017,2089,2161,
@@ -67,6 +67,8 @@ public:
     int hasher(int newApp);//
     bool rehash(Hash *);//
     void printEVERYTHING();
+  
+private:
     
     
     

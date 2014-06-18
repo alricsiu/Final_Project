@@ -236,10 +236,6 @@ bool Hash::rehash(Hash * newHash){
     tableSize = getNextPrime(tableSize);
     cout << "New TableSize: " << tableSize << endl; // increase table size
     
-    // LEFT OFF: REALIZED THAT I HAVE TO DYNAMICALLY ALLOCATE BUCKETNODE ARRAY
-    // MUST THEREFORE CHANGE HOW TRAVERSALS OF IT ARE HANDLED IN INSERT FUNCTION
-    // AND MAYBE OTHER MEMBER FUNCTIONS THAT I CANT THINK OF RIGHT NOW.
-    
     Hash * reHashTable = new Hash(tableSize);
     // call constructor
     
