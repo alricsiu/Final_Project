@@ -190,7 +190,7 @@ int menu(bool showMenu)
         << PRINT_HASH_LIST
         << " - Prints Hash List\n\t"
         << PRINT_KEY_LIST
-        << " - Prints list of entries in sequential order"
+        << " - Prints list of entries in sequential order\n\t"
         << PRINT_TREE_CHOICE
         << " - Print Tree as an Indented List\n\t"
         << SAVE_TO_FILE_CHOICE
