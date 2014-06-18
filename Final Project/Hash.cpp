@@ -100,7 +100,7 @@ bool Hash::insert(App * newApp)
     // if over 75 then rehash
     if (hashTable[searchKey])
     {
-        while (i < 3 && hashTable[searchKey]->appArray[i])
+        while (i < 3 && hashTable[searchKey]->appArray[i]){
             i++;
         if (i)
             collisionCount++;
@@ -231,10 +231,6 @@ bool Hash::rehash(){
     tableSize = getNextPrime(tableSize);
     cout << "New TableSize: " << tableSize << endl; // increase table size
     
-    // LEFT OFF: REALIZED THAT I HAVE TO DYNAMICALLY ALLOCATE BUCKETNODE ARRAY
-    // MUST THEREFORE CHANGE HOW TRAVERSALS OF IT ARE HANDLED IN INSERT FUNCTION
-    // AND MAYBE OTHER MEMBER FUNCTIONS THAT I CANT THINK OF RIGHT NOW.
-    
     Hash * reHashTable = new Hash(tableSize);
     // call constructor
     
@@ -286,6 +282,18 @@ bool Hash::rehash(){
     //
     
 }
+
+//******************************************************************
+// The shift function is designed to shift all entries in a bucket *
+// after an element is deleted from the hashtable. It essentially  *
+// fills the gaps and shifts everything.                           *
+//******************************************************************
+void Hash::shift()
+{
+    
+}
+
+
 //Constructor
 Hash::Hash()
 {
