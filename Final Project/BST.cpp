@@ -1,10 +1,17 @@
 
 //  Created by Fangyuan Xing on 5/26/14.
 //  Copyright (c) 2014 Emily. All rights reserved.
+//***************************************************************************
 //  BST.cpp
+//  The role of the BST in the application is to print indented tree, insert
+//  items and delete items
+//***************************************************************************
 
+#include <fstream>
 #include "BST.h"
 #include "Stack.h"
+#include "Queue.h"
+
 using namespace std;
 
 //***************************************************************************
@@ -31,7 +38,7 @@ BST::~BST()
 //  This function calls the private function _insert to insert data
 //
 //***************************************************************************
-void BST::BST_insert(Data* data)
+void BST::BST_insert(App* data)
 {
     _insert(data);
 }
@@ -40,26 +47,28 @@ void BST::BST_insert(Data* data)
 //  This function calls the private function _insert to add data
 //
 //***************************************************************************
-void BST::BST_add(Data* data)
+void BST::BST_add(App* data)
 {
     _insert(data);
 }
 
 //***************************************************************************
 //  This function deletes a node by calling the private function _search to
-//  search target first, and if found, calls private function _delete, print
-//  error message if not found and return
+//  search target first, and if found, calls private function _delete, returns
+//  the pointer, or returns NULL if not found
 //***************************************************************************
-void BST::BST_delete(int target)
+App* BST::BST_delete(int target)
 {
     BST_Node* found = _search(target);
     
     if(!found)
     {
-        cout << "Cannot find. " << endl;
-        return;
+       // cout << "Cannot find in the tree! " << endl;
+        return NULL;
     }
+    
     _delete(found);
+    return found -> data;
 }
 
 //***************************************************************************
@@ -67,21 +76,21 @@ void BST::BST_delete(int target)
 //  It calls the private function _search to check target, returns true if
 //  found, returns false if not
 //***************************************************************************
-bool BST::BST_search(int target)
-{
-    BST_Node *found = _search(target);
-    if (found)
-    {
-        cout << "found! " << endl;
-        cout << found -> data -> ID << " "
-             << found -> data -> name << " "
-             << found -> data -> author << " "
-        << found -> data -> category << endl;
-        return true;
-    }
-    cout << "cannot find !" << endl;
-    return false;
-}
+//bool BST::BST_search(int target)
+//{
+//    BST_Node *found = _search(target);
+//    if (found)
+//    {
+//        cout << "found in the tree! " << endl;
+//        cout << found -> data -> getUniqueKey() << " "
+//             << found -> data -> getAppName() << " "
+//             << found -> data -> getAuthor() << " "
+//        << found -> data -> getCategory() << endl;
+//        return true;
+//    }
+//    cout << "cannot find in the tree!" << endl;
+//    return false;
+//}
 
 //***************************************************************************
 //  This funtion prints data in key sequence by calling private funtion
@@ -101,7 +110,15 @@ void BST::BST_print() const
     _printTree(root, 1);
 }
 
-
+//***************************************************************************
+//  This function calls the private funtion _BST_BreadthFirstTraversals_Q to
+//  write tree to the output file
+//  paramters : string filename
+//***************************************************************************
+void BST::outputTofile (string filename) const
+{
+    _BST_BreadthFirstTraversals_Q(filename);
+}
 
 //***************************    PRIVATE    ************************************//
 
@@ -111,17 +128,13 @@ void BST::BST_print() const
 //  This funtion inserts a node to the tree
 //  The parameter is Data* data
 //***************************************************************************
-void BST::_insert(Data* data)
+void BST::_insert(App* data)
 {
-    BST_Node *newNode = new BST_Node;
-    BST_Node *pWalk;
+    BST_Node* newNode = new BST_Node;
+    BST_Node* pWalk;
     
     // allocate the new node
-    newNode = new BST_Node;
-    newNode->data->ID  = data->ID;
-    newNode->data->name = data->name;
-    newNode->data->author = data->author;
-    newNode->data->category = data->category;
+    newNode->data = data;
     newNode->left  = NULL;
     newNode->right = NULL;
     newNode->parent = NULL;
@@ -140,14 +153,14 @@ void BST::_insert(Data* data)
         {
             newNode -> parent = pWalk;
             
-            if( newNode -> data ->ID < pWalk->data->ID )
+            if( newNode -> data ->getUniqueKey() < pWalk->data->getUniqueKey() )
                 pWalk = pWalk->left;
             else
                 pWalk = pWalk->right;
         }
         
         // insert the new node
-        if( newNode -> data ->ID < newNode -> parent -> data->ID ) // no left child
+        if( newNode -> data ->getUniqueKey() < newNode -> parent -> data->getUniqueKey() ) // no left child
             newNode -> parent -> left  = newNode;
         else
            newNode -> parent -> right = newNode;
@@ -163,7 +176,7 @@ void BST::_insert(Data* data)
 //***************************************************************************
 bool BST::_isLeftChild(BST_Node* target)
 {
-    return target -> data -> ID < target -> parent -> data -> ID;
+    return target -> data -> getUniqueKey() < target -> parent -> data -> getUniqueKey();
 }
 
 //***************************************************************************
@@ -206,10 +219,10 @@ void BST::_delete(BST_Node* target)
     {
         BST_Node* smallestNode = _SmallestNodeinRightSubtree(target -> right);
         
-        target -> data -> ID = smallestNode -> data -> ID;
-        target -> data -> name = smallestNode -> data -> name;
-        target -> data -> author = smallestNode -> data -> author;
-        target -> data -> category = smallestNode -> data -> category;
+        target -> data -> setUniqueKey(smallestNode -> data -> getUniqueKey());
+        target -> data -> setAppName(smallestNode -> data -> getAppName());
+        target -> data -> setAuthor(smallestNode -> data -> getAuthor());
+        target -> data -> setCategory(smallestNode -> data -> getCategory());
         
         // smallest -> parent == target
         if(smallestNode -> parent == target)
@@ -347,10 +360,10 @@ BST::BST_Node* BST::_search(int target)
     BST_Node* pWalk = root;
     while( pWalk )
     {
-        if( target < pWalk->data->ID )
+        if( target < pWalk->data->getUniqueKey() )
             pWalk = pWalk->left;
         else
-            if( target > pWalk->data->ID )
+            if( target > pWalk->data->getUniqueKey() )
                 pWalk = pWalk->right;
             else
                 return pWalk; // found
@@ -385,7 +398,7 @@ void BST::_InorderTraverse(BST_Node* root) const
             if(!s.isEmpty())
             {
                 s.getTop(temp);
-                cout << temp -> data->ID << " ";
+                cout << temp -> data->getUniqueKey() << " ";
                 s.pop(temp);
                 temp = temp -> right;
             }
@@ -426,7 +439,48 @@ void BST::_printTree(BST_Node* root, int level) const
         {
             cout << "    ";
         }
-        cout << level << ". " << root->data->ID << endl;
+        cout << level << ". " << root->data->getUniqueKey() << endl;
         _printTree(root->left, level + 1);
     }
+}
+
+
+//***************************************************************************
+//  breadth-first traversal
+//  parameters : filename
+//***************************************************************************
+void BST::_BST_BreadthFirstTraversals_Q(string filename) const
+{
+    ofstream outputfile(filename);
+    
+    if(!outputfile)
+    {
+        cout << "cannot open output file" << endl;
+        exit(1);
+    }
+    
+    
+    if(root == NULL)
+        return;
+    
+    Queue<BST_Node*> q;
+    q.enqueue(root);
+    
+    while(!q.isEmpty())
+    {
+        BST_Node* temp;
+        q.queueFront(temp);
+        outputfile << temp -> data -> getUniqueKey() << " ";
+        q.dequeue(temp);
+        
+        if(temp -> left)
+        {
+            q.enqueue(temp -> left);
+        }
+        if(temp -> right)
+        {
+            q.enqueue(temp -> right);
+        }
+    }
+    cout << endl;
 }

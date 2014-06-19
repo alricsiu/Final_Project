@@ -1,32 +1,37 @@
 
 //  Created by Fangyuan Xing on 5/26/14.
 //  Copyright (c) 2014 Emily. All rights reserved.
+//***************************************************************************
 //  BST.h
+//  The role of the BST in the application is to print indented tree, insert
+//  items and delete items
+//***************************************************************************
 
 #ifndef __TeamProject__BST__
 #define __TeamProject__BST__
 
 #include <iostream>
 #include <string>
+#include "App.h"
 using namespace std;
 
-struct Data
-{
-    int ID;
-    string name;
-    string author;
-    string category;
-};
+//struct Data
+//{
+//    int ID;
+//    string name;
+//    string author;
+//    string category;
+//};
 
 class BST
 {
     struct BST_Node
     {
-        Data* data;
+        App* data;
         BST_Node* left;
         BST_Node* right;
         BST_Node* parent;
-        BST_Node() : data(new Data), left(NULL), right(NULL), parent(NULL) {}
+        BST_Node() : data(new App), left(NULL), right(NULL), parent(NULL) {}
         ~BST_Node() {delete data;}
     };
     
@@ -59,27 +64,27 @@ public:
     //  This function calls the private function _insert to insert data
     //
     //***************************************************************************
-    void BST_insert(Data* data);
+    void BST_insert(App* data);
     
     //***************************************************************************
     //  This function calls the private function _insert to add data
     //
     //***************************************************************************
-    void BST_add(Data* data);
+    void BST_add(App* data);
     
     //***************************************************************************
     //  This function deletes a node by calling the private function _search to
     //  search target first, and if found, calls private function _delete, print
     //  error message if not found and return
     //***************************************************************************
-    void BST_delete(int target);
+    App* BST_delete(int target);
     
     //***************************************************************************
     //  This function searches by a unique key
     //  It calls the private function _search to check target, returns true if
     //  found, returns false if not
     //***************************************************************************
-    bool BST_search(int target);
+    // bool BST_search(int target);
     
     //***************************************************************************
     //  This funtion prints data in key sequence by calling private funtion
@@ -92,6 +97,13 @@ public:
     //
     //***************************************************************************
     void BST_print() const;
+    
+    //***************************************************************************
+    //  This function calls the private funtion _BST_BreadthFirstTraversals_Q to
+    //  write tree to the output file
+    //  paramters : string filename
+    //***************************************************************************
+    void outputTofile (string filename) const;
     
     
 private:
@@ -120,7 +132,7 @@ private:
     //  This funtion inserts a node to the tree
     //  The parameter is Data* data
     //***************************************************************************
-    void _insert(Data* data);
+    void _insert(App* data);
     
     //***************************************************************************
     //  This funtion deletes a node from the tree
@@ -152,6 +164,13 @@ private:
     //  The parameters are BST_Node* root and int level
     //***************************************************************************
     void _printTree(BST_Node* root, int level) const;
+    
+    //***************************************************************************
+    //  breadth-first traversal
+    //  parameters : filename
+    //***************************************************************************
+    void _BST_BreadthFirstTraversals_Q(string filename) const;
+    
 };
 
 #endif /* defined(__TeamProject__BST__) */
