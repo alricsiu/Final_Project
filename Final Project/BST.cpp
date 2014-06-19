@@ -1,7 +1,11 @@
 
 //  Created by Fangyuan Xing on 5/26/14.
 //  Copyright (c) 2014 Emily. All rights reserved.
+//***************************************************************************
 //  BST.cpp
+//  The role of the BST in the application is to print indented tree, insert
+//  items and delete items
+//***************************************************************************
 
 #include "BST.h"
 #include "Stack.h"
@@ -56,7 +60,7 @@ void BST::BST_delete(int target)
     
     if(!found)
     {
-        cout << "Cannot find. " << endl;
+        cout << "Cannot find in the tree! " << endl;
         return;
     }
     _delete(found);
@@ -72,14 +76,14 @@ bool BST::BST_search(int target)
     BST_Node *found = _search(target);
     if (found)
     {
-        cout << "found! " << endl;
+        cout << "found in the tree! " << endl;
         cout << found -> data -> ID << " "
              << found -> data -> name << " "
              << found -> data -> author << " "
         << found -> data -> category << endl;
         return true;
     }
-    cout << "cannot find !" << endl;
+    cout << "cannot find in the tree!" << endl;
     return false;
 }
 
@@ -113,15 +117,11 @@ void BST::BST_print() const
 //***************************************************************************
 void BST::_insert(Data* data)
 {
-    BST_Node *newNode = new BST_Node;
-    BST_Node *pWalk;
+    BST_Node* newNode = new BST_Node;
+    BST_Node* pWalk;
     
     // allocate the new node
-    newNode = new BST_Node;
-    newNode->data->ID  = data->ID;
-    newNode->data->name = data->name;
-    newNode->data->author = data->author;
-    newNode->data->category = data->category;
+    newNode->data = data;
     newNode->left  = NULL;
     newNode->right = NULL;
     newNode->parent = NULL;
