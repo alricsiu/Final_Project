@@ -92,6 +92,28 @@ int main()
     Hash *hash = new Hash;
     parsetoBinaryTree(BSTTree, hash, inputFile, filename);
     
+    //test driving hash search; feel free to delete.
+    App testapp;
+    if (!hash->search(848218959, testapp))
+        cout << "Not found!\n";
+    else
+        cout << "found!\n";
+    if (!hash->search(123124123, testapp))
+        cout << "Not found!\n";
+    else
+        cout << "found!\n";
+    
+    hash->printHash();
+    
+    if (!hash->deleteElem(848218959))
+        cout << "App not found; not deleted\n";
+    else
+        cout << "deleted!\n";
+    
+    hash->printHash();
+    
+    return 0; ////////
+    
     inputFile.close();
     
     //REHASH TEST:

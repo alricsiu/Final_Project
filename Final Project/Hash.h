@@ -57,7 +57,7 @@ public:
     bool insert(App * newApp); //inserts newApp into hashTable
     bool remove(int searchKey);
     bool isEmpty();
-    bool search(int searchKey);//
+    bool search(int searchKey, App &);//
     void displayHash();//
     void printHash();//
     double getLoadFactor()
@@ -66,6 +66,7 @@ public:
     int fullCount();//
     int hasher(int newApp);//
     bool rehash();//
+    bool deleteElem(int);
     
     
 private:

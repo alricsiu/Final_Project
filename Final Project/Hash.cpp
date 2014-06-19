@@ -56,14 +56,16 @@ int Hash::getNextPrime(int currentprime)
  int i = searchKey;
  return
  }*/
-bool Hash::search(int searchKey){
-    for(int i = 0; i < tableSize; i++){
+bool Hash::search(int searchKey, App &foundElem){
+    int i = hasher(searchKey);
+    if (hashTable[i])
         for(int j = 0; j < bucketSize; j++){
-            if(searchKey == hashTable[i]->appArray[j]->getUniqueKey()){
-                return true;
-            }
+            if (hashTable[i]->appArray[j])
+                if(searchKey == hashTable[i]->appArray[j]->getUniqueKey()){
+                    foundElem = *hashTable[i]->appArray[j];
+                    return true;
+                }
         }
-    }
     return false;
 }
 
@@ -146,13 +148,16 @@ void Hash::displayHash()
 {
     cout << "Hash Contents:" << endl << "---------------" << endl;
     for(int i = 0; i < tableSize; i++){
-        for(int j = 0; j < bucketSize; j++){
-            if(hashTable[i]->appArray[j]->getUniqueKey()){
-                cout << "App Id: " << hashTable[i]->appArray[j]->getUniqueKey() << endl;
-                cout << "\tName: " << hashTable[i]->appArray[j]->getAppName() << endl;
-                cout << "\tPublisher: " << hashTable[i]->appArray[j]->getAuthor() << endl;
-                cout << "\tCategory: " << hashTable[i]->appArray[j]->getCategory() << endl;
-                cout << "-----------------------" << endl;
+        if (hashTable[i]) {
+            for(int j = 0; j < bucketSize; j++){
+                if (hashTable[i]->appArray[j])
+                    if(hashTable[i]->appArray[j]->getUniqueKey()){
+                        cout << "App Id: " << hashTable[i]->appArray[j]->getUniqueKey() << endl;
+                        cout << "\tName: " << hashTable[i]->appArray[j]->getAppName() << endl;
+                        cout << "\tPublisher: " << hashTable[i]->appArray[j]->getAuthor() << endl;
+                        cout << "\tCategory: " << hashTable[i]->appArray[j]->getCategory() << endl;
+                        cout << "-----------------------" << endl;
+                    }
             }
         }
     }
@@ -282,15 +287,45 @@ bool Hash::rehash(){
     
 }
 
+//********************************************************************
+// The deleteElem function tries to find the element with a specified*
+// app ID in the hashTable by first hashing the ID to determine the *
+// element in the hash table (if it exists). It returns true if the *
+// app was found and successfully deleted, and false otherwise.     *
+//********************************************************************
+bool Hash::deleteElem(int appID)
+{
+    int key = hasher(appID);
+    int i, j;
+    if (!hashTable[key])
+        return false;
+    for (i = 0; i < bucketSize; i++) {
+        if (hashTable[key]->appArray[i]->getUniqueKey() == appID) {
+            delete hashTable[key]->appArray[i];
+            if (i < bucketSize) {// index of 2 is end of array, so this tests whether current i has another element after it
+                // shifting
+                for (j = i + 1; j < bucketSize && hashTable[key]->appArray[j]; j++) {
+                    hashTable[key]->appArray[i] = hashTable[key]->appArray[j];
+                    hashTable[key]->appArray[j] = nullptr;
+                    i++;
+                }
+                // nullifying the trailing elements in the bucket
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
 //******************************************************************
 // The shift function is designed to shift all entries in a bucket *
 // after an element is deleted from the hashtable. It essentially  *
 // fills the gaps and shifts everything.                           *
 //******************************************************************
-void Hash::shift()
-{
-    
-}
+//void Hash::shift()
+//{
+//    
+//}
 
 
 //Constructor
