@@ -303,10 +303,11 @@ Hash::Hash()
     dataCount = 0;
 }
 
-Hash::Hash(int tableSize)
+Hash::Hash(int lineCount)
 {
     hashTable = new bucketNode * [tableSize];
-    this->tableSize = tableSize;
+    this->tableSize = getNextPrime(lineCount *2);
+;
     for (int i = 0; i < tableSize; i++)
         hashTable[i] = nullptr; // safety
     dataCount = 0;
