@@ -8,4 +8,9 @@
 
 #include "ListHead.h"
 
-L
+ListHead::ListHead()
+{
+    pHash = new Hash();
+    pTree = new BST();
+
+}

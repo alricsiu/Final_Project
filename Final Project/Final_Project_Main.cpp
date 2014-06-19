@@ -23,9 +23,7 @@
 using namespace std;
 
 #include "BST.h"
-//#include "Hash.h"
-#include "App.h"
-#include "Hash.h"
+#include "ListHead.h"
 
 const char INSERT_CHOICE = 'I',
 DELETE_CHOICE = 'D',
@@ -88,8 +86,8 @@ int main()
         return -1; //unable to open file.
     }
 
-    BST *BSTTree = new BST();
-    Hash *hash = new Hash;
+    ListHead *listHead = new ListHead();
+    
     parsetoBinaryTree(BSTTree, hash, inputFile, filename);
     
     inputFile.close();
