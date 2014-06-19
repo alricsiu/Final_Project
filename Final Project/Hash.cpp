@@ -14,8 +14,6 @@ int Hash::getTableSize()
     return tableSize;
 }
 
-//this function might be unnecessary because the rehashing
-//is done as a member function.
 void Hash::setTableSize(int newTableSize)
 {
     tableSize = newTableSize;
@@ -29,15 +27,14 @@ int Hash::getEntryCount()
 {
     return entryCount;
 }
-//
-//void Hash::incrementEntryCount()
-//{
-//    ++entryCount;
-//}
-//
+
+void Hash::incrementEntryCount()
+{
+    ++entryCount;
+}
+
 int Hash::getNextPrime(int currentprime)
 {
-    //Doubles current prime number for rehash
     
     // getNextPrime traverses the prime array until the array
     // element is greater than two times the current table size (also a prime)
@@ -94,12 +91,7 @@ bool Hash::insert(App * newApp)
     int searchKey = hasher(newApp->getUniqueKey());
     bool insertSuccess = false;
     if(empty) empty = false;
-    //While there is a positively defined value for appId
-    // continue iterating through the bucket until you find
-    // an empty location
-    
-    // check load factor each time
-    // if over 75 then rehash
+
     if (hashTable[searchKey])
     {
         while (i < 3 && hashTable[searchKey]->appArray[i])
@@ -111,26 +103,24 @@ bool Hash::insert(App * newApp)
         }
         else {
             hashTable[searchKey]->appArray[i] = newApp;
-            //            cout << "Collision count incremented to " << collisionCount << endl;
             collisionCount++;
             insertSuccess = true;
             hashTable[searchKey]->count++; //increments number of valid elements per bucket.
         }
     }
     else {
+        // First data node inserted for that hashTable index.
         hashTable[searchKey] = new bucketNode;
         hashTable[searchKey]->count = 1;
         for (int j = 0; j < bucketSize; j++)
             hashTable[searchKey]->appArray[j] = nullptr;
         hashTable[searchKey]->appArray[0] = newApp;
         
-        //housekeeping
         insertSuccess = true;
-        hashTable[searchKey]->count++;
         entryCount++; // updates
     }
     
-    // after successful insert, check need for rehash
+    // after successful insert, check need for rehash based on load factor
     if (insertSuccess) {
         dataCount++;
         if (getLoadFactor() > 75)
@@ -245,46 +235,11 @@ bool Hash::rehash(){
                     if (!reHashTable->insert(hashTable[i]->appArray[j]))
                         return false; ///asdfasdfasdfasdfasd
     
-    //does rehashing with tableSize already set to new value.
-    
-    //Alright LOOKS good probably better than my hash algorithm but here it is anyways:
-    /*
-     
-     int newTableSize = getNextPrime(tableSize);
-     Hash *reHashTable = new Hash(newTableSize);
-     reHashTable->hashTable = new bucketNode[newTableSize];
-     for(int i = 0; i < tableSize; i++){
-     for(int j = 0; j < bucketSize; j++){
-     if(hashTable[i].appArray[j].appId > 0){
-     int searchKey = hasher(hashTable[i].appArray[j].appId, newTableSize);
-     reHashTable->insert(searchKey, hashTable[i].appArray[j]);
-     }
-     }
-     }
-     tableSize = newTableSize;
-     hashTable = reHashTable->hashTable;
-     collisionCount = reHashTable->collisionCount;
-     entryCount = reHashTable->entryCount;
-     
-     }
-     
-     
-     
-     */
-    
-    // iterate through each element of current hashtable
-    // run it through the hashtable and take each app
-    // run the hasher function on it.
-    // insert and transfer all fields
-    
     delete hashTable;
     hashTable = reHashTable->hashTable;
     
     
     return true;
-    //pass reference back to pointer in main
-    //
-    
 }
 
 //********************************************************************
@@ -304,12 +259,10 @@ bool Hash::deleteElem(int appID)
             delete hashTable[key]->appArray[i];
             if (i < bucketSize) {// index of 2 is end of array, so this tests whether current i has another element after it
                 // shifting
-                for (j = i + 1; j < bucketSize && hashTable[key]->appArray[j]; j++) {
+                for (j = i + 1; j < bucketSize && hashTable[key]->appArray[j]; j++, i++) {
                     hashTable[key]->appArray[i] = hashTable[key]->appArray[j];
                     hashTable[key]->appArray[j] = nullptr;
-                    i++;
                 }
-                // nullifying the trailing elements in the bucket
             }
             return true;
         }
