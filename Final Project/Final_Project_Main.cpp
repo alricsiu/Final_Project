@@ -103,7 +103,7 @@ int main()
     else
         cout << "found!\n";
     
-    hash->printHash();
+    hash->displayHash();
     
     if (!hash->deleteElem(848218959))
         cout << "App not found; not deleted\n";
