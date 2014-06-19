@@ -11,6 +11,7 @@
 		069B196F1952559300D5A970 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 069B19621952559300D5A970 /* App.cpp */; };
 		A838115519454AFB00A1712C /* Final_Project.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A838115419454AFB00A1712C /* Final_Project.1 */; };
 		A838116419454D8800A1712C /* BST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838116319454D8800A1712C /* BST.cpp */; };
+		A88B84D0195261B50043A310 /* ListHead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A88B84CF195261B50043A310 /* ListHead.cpp */; };
 		A8E616C719490A6A00A244B3 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8E616C619490A6A00A244B3 /* Hash.cpp */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,8 @@
 		A838116019454D8800A1712C /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		A838116219454D8800A1712C /* BST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BST.h; sourceTree = "<group>"; };
 		A838116319454D8800A1712C /* BST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BST.cpp; sourceTree = "<group>"; };
+		A88B84CE195261B50043A310 /* ListHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListHead.h; sourceTree = "<group>"; };
+		A88B84CF195261B50043A310 /* ListHead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListHead.cpp; sourceTree = "<group>"; };
 		A8E616C519490A6A00A244B3 /* Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
 		A8E616C619490A6A00A244B3 /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +74,8 @@
 		A838115119454AFB00A1712C /* Final Project */ = {
 			isa = PBXGroup;
 			children = (
+				A88B84CE195261B50043A310 /* ListHead.h */,
+				A88B84CF195261B50043A310 /* ListHead.cpp */,
 				A838116019454D8800A1712C /* Stack.h */,
 				A838116219454D8800A1712C /* BST.h */,
 				A838116319454D8800A1712C /* BST.cpp */,
@@ -137,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A838116419454D8800A1712C /* BST.cpp in Sources */,
+				A88B84D0195261B50043A310 /* ListHead.cpp in Sources */,
 				069B196F1952559300D5A970 /* App.cpp in Sources */,
 				A8E616C719490A6A00A244B3 /* Hash.cpp in Sources */,
 				069B196E1952559300D5A970 /* Final_Project_Main.cpp in Sources */,
