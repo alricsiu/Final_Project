@@ -45,7 +45,7 @@ int Hash::getNextPrime(int currentprime)
     int dbl_currentprime = currentprime*2;
     int count = 0;
     
-
+    
     while(dbl_currentprime > primes[count] && count < 100){
         count++;
     }
@@ -58,13 +58,14 @@ int Hash::getNextPrime(int currentprime)
  }*/
 bool Hash::search(int searchKey, App &foundElem){
     int i = hasher(searchKey);
-    for(int j = 0; j < bucketSize; j++){
-        if (hashTable[i]->appArray[j])
-            if(searchKey == hashTable[i]->appArray[j]->getUniqueKey()){
-                foundElem = *hashTable[i]->appArray[j];
-                return true;
-            }
-    }
+    if (hashTable[i])
+        for(int j = 0; j < bucketSize; j++){
+            if (hashTable[i]->appArray[j])
+                if(searchKey == hashTable[i]->appArray[j]->getUniqueKey()){
+                    foundElem = *hashTable[i]->appArray[j];
+                    return true;
+                }
+        }
     return false;
 }
 
@@ -110,7 +111,7 @@ bool Hash::insert(App * newApp)
         }
         else {
             hashTable[searchKey]->appArray[i] = newApp;
-//            cout << "Collision count incremented to " << collisionCount << endl;
+            //            cout << "Collision count incremented to " << collisionCount << endl;
             collisionCount++;
             insertSuccess = true;
             hashTable[searchKey]->count++; //increments number of valid elements per bucket.
@@ -266,7 +267,7 @@ bool Hash::rehash(){
      entryCount = reHashTable->entryCount;
      
      }
-
+     
      
      
      */
@@ -323,7 +324,7 @@ bool Hash::deleteElem(int appID)
 //******************************************************************
 //void Hash::shift()
 //{
-//    
+//
 //}
 
 
@@ -339,9 +340,8 @@ Hash::Hash()
 
 Hash::Hash(int lineCount)
 {
-    this->hashTable = new bucketNode * [tableSize];
-    //this->tableSize = getNextPrime(lineCount *2);
-    tableSize = lineCount;
+    hashTable = new bucketNode * [lineCount];
+    this->tableSize = lineCount;
     for (int i = 0; i < tableSize; i++)
         this->hashTable[i] = nullptr; // safety
     dataCount = 0;
