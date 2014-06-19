@@ -86,8 +86,8 @@ int main()
         return -1; //unable to open file.
     }
 
-    ListHead *listHead = new ListHead();
-    
+    BST *BSTTree = new BST();
+    Hash *hash = new Hash;
     parsetoBinaryTree(BSTTree, hash, inputFile, filename);
     
     inputFile.close();
