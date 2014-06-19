@@ -341,8 +341,8 @@ Hash::Hash()
 Hash::Hash(int lineCount)
 {
     hashTable = new bucketNode * [tableSize];
-    this->tableSize = getNextPrime(lineCount *2);
-;
+    //this->tableSize = getNextPrime(lineCount *2);
+    this->tableSize = lineCount;
     for (int i = 0; i < tableSize; i++)
         hashTable[i] = nullptr; // safety
     dataCount = 0;

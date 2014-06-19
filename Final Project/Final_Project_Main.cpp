@@ -88,6 +88,7 @@ int main()
 
     BST *BSTTree = new BST();
     Hash *hash = new Hash;
+    
     parsetoBinaryTree(BSTTree, hash, inputFile, filename);
     
     //test driving hash search; feel free to delete.
@@ -397,7 +398,6 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
                     int key;
                     istringstream ( uniquekey ) >> key;
                     App *app = new App(key, appName, author, category);
-                    bool rehash_success = false;
                     //tree->insert(app);
                     hash->insert(app);
                     
