@@ -58,14 +58,13 @@ int Hash::getNextPrime(int currentprime)
  }*/
 bool Hash::search(int searchKey, App &foundElem){
     int i = hasher(searchKey);
-    if (hashTable[i])
-        for(int j = 0; j < bucketSize; j++){
-            if (hashTable[i]->appArray[j])
-                if(searchKey == hashTable[i]->appArray[j]->getUniqueKey()){
-                    foundElem = *hashTable[i]->appArray[j];
-                    return true;
-                }
-        }
+    for(int j = 0; j < bucketSize; j++){
+        if (hashTable[i]->appArray[j])
+            if(searchKey == hashTable[i]->appArray[j]->getUniqueKey()){
+                foundElem = *hashTable[i]->appArray[j];
+                return true;
+            }
+    }
     return false;
 }
 
@@ -104,15 +103,15 @@ bool Hash::insert(App * newApp)
     {
         while (i < 3 && hashTable[searchKey]->appArray[i])
             i++;
-        if (i)
-            collisionCount++;
         if(i >= 3){
             hashTable[searchKey]->full = true;
             cout<< "Bucket " << searchKey << " is full." << endl;
+            rehash();
         }
         else {
             hashTable[searchKey]->appArray[i] = newApp;
 //            cout << "Collision count incremented to " << collisionCount << endl;
+            collisionCount++;
             insertSuccess = true;
             hashTable[searchKey]->count++; //increments number of valid elements per bucket.
         }
@@ -122,7 +121,7 @@ bool Hash::insert(App * newApp)
         hashTable[searchKey]->count = 1;
         for (int j = 0; j < bucketSize; j++)
             hashTable[searchKey]->appArray[j] = nullptr;
-        hashTable[searchKey]->appArray[i] = newApp;
+        hashTable[searchKey]->appArray[0] = newApp;
         
         //housekeeping
         insertSuccess = true;
@@ -243,7 +242,7 @@ bool Hash::rehash(){
             for (int j = 0; j < bucketSize; j++)
                 if (hashTable[i]->appArray[j])
                     if (!reHashTable->insert(hashTable[i]->appArray[j]))
-                        return false;
+                        return false; ///asdfasdfasdfasdfasd
     
     //does rehashing with tableSize already set to new value.
     
@@ -340,10 +339,10 @@ Hash::Hash()
 
 Hash::Hash(int lineCount)
 {
-    hashTable = new bucketNode * [tableSize];
+    this->hashTable = new bucketNode * [tableSize];
     //this->tableSize = getNextPrime(lineCount *2);
-    this->tableSize = lineCount;
+    tableSize = lineCount;
     for (int i = 0; i < tableSize; i++)
-        hashTable[i] = nullptr; // safety
+        this->hashTable[i] = nullptr; // safety
     dataCount = 0;
 }
