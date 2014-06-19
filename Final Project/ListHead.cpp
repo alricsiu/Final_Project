@@ -14,3 +14,5 @@ ListHead::ListHead()
     pTree = new BST();
 
 }
+
+//TEST
