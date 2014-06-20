@@ -100,6 +100,7 @@ App* Hash::remove(int uniqueKey)
 {
     App *result = NULL;
     int hashedKey = uniqueKey % (tableSize-1);
+    cout<<hashedKey;
     result = hashList[hashedKey].remove(uniqueKey);
     if(result)
         count--;
@@ -306,11 +307,10 @@ void Hash::reHash()
     }
     
     this->tableSize = rehashbuffer->tableSize;
-    delete [] this->hashList;
     this->hashList = rehashbuffer->hashList;
     this->count = rehashbuffer->count;
     this->collisions = rehashbuffer ->collisions;
-    
+    rehashbuffer = nullptr;
 }
 
 //////////////////

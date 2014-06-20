@@ -118,7 +118,7 @@ int main()
                 listHead->getHash()->insert(app);
                 
                 //persist changes
-                listHead->getBST()->outputTofile("data.txt");
+//                listHead->getBST()->outputTofile("data.txt");
 
             }
                 break;
@@ -136,7 +136,7 @@ int main()
                 
                 delete hashResult;
                 //persist changes
-                listHead->getBST()->outputTofile("data.txt");
+//                listHead->getBST()->outputTofile("data.txt");
 
             }
                 break;
