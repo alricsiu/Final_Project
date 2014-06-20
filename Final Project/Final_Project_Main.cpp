@@ -127,6 +127,7 @@ int main()
                 int key = getValidKey(" Enter Unique Key:");
 
                 App *bstResult = listHead->getBST()->BST_delete(key);
+
                 App *hashResult = listHead->getHash()->remove(key);
 
                 if(bstResult == hashResult)

@@ -85,7 +85,7 @@ App* Bucket::remove(int uniqueKey)
             if(i<count)
             {
                 locations[i] = locations[count];
-                locations[count] = NULL;
+                locations[count] = nullptr;
             }
             
             break;
