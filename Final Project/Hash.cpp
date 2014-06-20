@@ -1,4 +1,4 @@
-//  Hash.h
+//  Hash.cpp
 //  Lab 5
 //
 //  This class is a Hash Table. Allows user to search the hash, 
@@ -167,7 +167,8 @@ App* Hash::search(int uniqueKey)
 // Stats //
 ///////////
 /**
- * Shows the Hash statistics, Load factor, collisions, count, tablesize
+ * Shows the Hash statistics, Load factor, collisions, count, tablesize,
+ * number of full buckets, and the buckets with the most elements.
  */
 void Hash::showStats()
 {
@@ -231,7 +232,7 @@ void Hash::showStats()
 // Getters //
 /////////////
 /**
- * Gets the number of collisions that occured
+ * Gets the number of collisions that occurred
  * @return the number of collisions.
  */
 int Hash::getCollisions()
@@ -247,6 +248,10 @@ double Hash::getLoadFactor()
     return (double)count/tableSize;
 }
 
+/**
+ * Returns the largest number of elements among the buckets.   
+ * @return The largest number of elements in a bucket
+ */
 int  Hash::getLongestBucketLength()
 {
     int maxLength = 0;
@@ -260,6 +265,10 @@ int  Hash::getLongestBucketLength()
     return maxLength;
 }
 
+/**
+ * Returns the number of full buckets in the Hash table.
+ * @return the number of full buckets.
+ */
 int  Hash::getNumFullBuckets()
 {
     int count = 0;
@@ -308,7 +317,8 @@ void Hash::reHash()
 // Destroy Hash //
 //////////////////
 /**
- *     Displays all items in the hash.
+ * Frees the memory associated with the hash table,
+ * and reinitializes self.
  */
 void Hash::destroyHash()
 {
@@ -321,7 +331,7 @@ void Hash::destroyHash()
 // Destructor //
 ////////////////
 /**
-*
+* Destroys the hash table.
  */
 Hash::~Hash()
 {
