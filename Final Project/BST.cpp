@@ -210,11 +210,7 @@ void BST::_delete(BST_Node* target)
     if(target -> left && target -> right)
     {
         BST_Node* smallestNode = _SmallestNodeinRightSubtree(target -> right);
-        
-        target -> data -> setUniqueKey(smallestNode -> data -> getUniqueKey());
-        target -> data -> setAppName(smallestNode -> data -> getAppName());
-        target -> data -> setAuthor(smallestNode -> data -> getAuthor());
-        target -> data -> setCategory(smallestNode -> data -> getCategory());
+        target -> data = smallestNode -> data;
         
         // smallest -> parent == target
         if(smallestNode -> parent == target)
