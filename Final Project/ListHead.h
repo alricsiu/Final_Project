@@ -14,7 +14,7 @@
 #include "BST.h"
 #include "Hash.h"
 
-const int BUCKET_SIZE = 3;
+//const int BUCKET_SIZE = 3;
 
 class ListHead
 {
@@ -30,6 +30,8 @@ private:
 public:
     //Constructor
     ListHead();
+    ListHead(int);
+
     ~ListHead();
     
     Hash* getHash();

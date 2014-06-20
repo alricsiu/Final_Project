@@ -16,6 +16,12 @@ ListHead::ListHead()
     pTree = new BST();
 }
 
+ListHead::ListHead(int fileLength)
+{
+    pHash = new Hash(Hash::getNextPrime(fileLength*2));
+    pTree = new BST();
+}
+
 Hash* ListHead::getHash()
 {
     return pHash;

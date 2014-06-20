@@ -214,6 +214,16 @@ BST::BST_Node* BST::_LargestNodeinRightSubtree(BST_Node* target)
 //***************************************************************************
 void BST::_delete(BST_Node* target)
 {
+    
+    // save original app data to be deleted.
+    App* original = target->data;
+
+    // create a working copy of the data so the original app data is not destroyed.
+    App* buffer = new App(target->data->getUniqueKey(), target->data->getAppName(), target->data->getAuthor(), target->data->getCategory());
+    
+    target->data = buffer;
+    
+    
     // target has both left and right children
     if(target -> left && target -> right)
     {
@@ -259,6 +269,8 @@ void BST::_delete(BST_Node* target)
                 smallestNode -> parent = NULL;
             }
         }
+        
+        target->data = original;
         //delete target;
         return;
     }
@@ -353,6 +365,7 @@ void BST::_delete(BST_Node* target)
 //***************************************************************************
 BST::BST_Node* BST::_search(int target)
 {
+    
     if (!root) // tree is empty
         return NULL;
     
@@ -360,7 +373,7 @@ BST::BST_Node* BST::_search(int target)
     BST_Node* pWalk = root;
     while( pWalk )
     {
-        if( target < pWalk->data->getUniqueKey() )
+       if( target < pWalk->data->getUniqueKey() )
             pWalk = pWalk->left;
         else
             if( target > pWalk->data->getUniqueKey() )

@@ -60,7 +60,11 @@ int getValidKey(string);
 string getValidString(string);
 void getValidRange(int &, int &);
 
+int countLines(ifstream &inputFile);
 void parseToListHead(ListHead* , ifstream &, string);
+void handleSearch(App*);
+
+
 
 //////////
 // Main //
@@ -87,7 +91,9 @@ int main()
         return -1; //unable to open file.
     }
 
-    ListHead *listHead = new ListHead();
+    int lines = countLines(inputFile);
+
+    ListHead *listHead = new ListHead(lines);
     
     parseToListHead(listHead, inputFile, filename);
     
@@ -125,16 +131,18 @@ int main()
             case DELETE_CHOICE:
             {
                 int key = getValidKey(" Enter Unique Key:");
-                listHead->getBST()->BST_delete(key);
-                listHead->getHash()->deleteElem(key);
+                cout<<key;
+                handleSearch(listHead->getBST()->BST_delete(key));
+                cout<<key;
+                handleSearch(listHead->getHash()->remove(key));
                 cout<<"Delete Choice";
             }
                 break;
             case SEARCH_CHOICE:
             {
-//                int key = getValidKey();
-//                BSTNode *result = BSTTree->search(key);
-//                handleSearch(result);
+                int key = getValidKey(" Enter Unique Key:");
+                App *app = listHead->getHash()->search(key);
+                handleSearch(app);
             }
                 break;
             case PRINT_HASH_LIST:
@@ -152,10 +160,10 @@ int main()
             case PRINT_TREE_CHOICE:
             {
                 cout<<endl<<"Binary Search Tree displayed below:"<<endl<<endl;
-//                if(BSTTree->getCount())
-//                    BSTTree->BST_print();
-//                else
-//                    cout<<"\t BST Tree is empty."<<endl<<endl;
+                if(listHead->getBST()->getCount())
+                    listHead->getBST()->BST_print();
+                else
+                    cout<<"\t BST Tree is empty."<<endl<<endl;
             }
                 break;
             case SAVE_TO_FILE_CHOICE:
@@ -351,6 +359,75 @@ int getValidKey(string displayMessage)
     }while(!success);
     
     return num;
+}
+
+
+//////////////////
+//Handle Search //
+//////////////////
+/**
+ * Generates the output from the result App returned from searching the Hash list.
+ * @param result A App* that is the search result.
+ */
+void handleSearch(App* result)
+{
+    if(result)
+    {
+        cout<<"\tSearch Result:"<<endl;
+        cout<<"\t\t"<<"Unique Key: "<<result->getUniqueKey()<<endl;
+        cout<<"\t\t"<<"App Name: "<<result->getAppName()<<endl;
+        cout<<"\t\t"<<"Author: "<<result->getAuthor()<<endl;
+        cout<<"\t\t"<<"Category: "<<result->getCategory()<<endl;
+    }
+    else
+    {
+        cout<<"\tUnique key is not found."<<endl;
+    }
+}
+
+//////////////////////
+//ParseToBinaryTree //
+//////////////////////
+/**
+ * Parses the input file into the binary tree. Creates an app object for each entry and inserts
+ * the entry into the binary search tree using its unique key.
+ 
+ EDIT: now also inserts into Hash Table for each insert. A better function name might be readData.
+ 
+ * @param tree      The BST tree to insert the entries into.
+ * @param inputFile The inputfile with the entries. Entries must span 4 lines, separated by new lines.
+ */
+int countLines(ifstream &inputFile)
+{
+    char c;
+    
+    string buffer="";
+    
+    int counter=0;
+    
+    while (inputFile.get(c))
+    {
+        if(c=='\r'||c=='\n')
+        {
+            if(buffer.length()!=0)
+            {
+                counter++;
+            }
+            buffer = "";
+
+        }
+        else
+        {
+            buffer = buffer + c;
+        }
+    }
+    
+    inputFile.clear() ;
+    inputFile.seekg(0, ios::beg) ;
+    
+    return counter/4;
+    
+    
 }
 
 

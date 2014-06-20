@@ -32,7 +32,9 @@ class BST
         BST_Node* right;
         BST_Node* parent;
         BST_Node() : data(new App), left(NULL), right(NULL), parent(NULL) {}
-        ~BST_Node() {delete data;}
+        ~BST_Node() {
+            //delete data;
+        }
     };
     
     BST_Node* root;
