@@ -424,6 +424,14 @@ void BST::_InorderTraverse() const
 
 //***************************************************************************
 //  This funtion deletes all the nodes in the tree
+//***************************************************************************
+void BST::BST_destroy()
+{
+    _destroy(root);
+}
+
+//***************************************************************************
+//  This funtion deletes all the nodes in the tree
 //  The parameter is BST_Node* root
 //***************************************************************************
 void BST::_destroy(BST_Node *root)
@@ -433,7 +441,6 @@ void BST::_destroy(BST_Node *root)
         _destroy(root->left);
         _destroy(root->right);
         delete root;
-        //cout << "destory" << endl;
     }
     return;
 }

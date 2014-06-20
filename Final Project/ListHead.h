@@ -36,6 +36,9 @@ public:
     
     Hash* getHash();
     BST* getBST();
+    
+    void destroyBST();
+    void destroyHash();
     //Member Functions
     
     

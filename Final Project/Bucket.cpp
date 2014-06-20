@@ -209,3 +209,16 @@ App* Bucket::getLocation(int index)
     
     return NULL;
 }
+
+void Bucket::destroyBucket()
+{
+    for(int i = 0; i<BUCKET_SIZE;i++)
+    {
+        if(locations[i])
+        {
+            delete locations[i];
+            App* temp = locations[i]; //clean up pointer
+            temp = NULL;
+        }
+    }
+}

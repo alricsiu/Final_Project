@@ -101,6 +101,11 @@ public:
     void BST_print() const;
     
     //***************************************************************************
+    //  This destroys the BST Tree and all nodes.
+    //***************************************************************************
+    void BST_destroy();
+    
+    //***************************************************************************
     //  This function calls the private funtion _BST_BreadthFirstTraversals_Q to
     //  write tree to the output file
     //  paramters : string filename

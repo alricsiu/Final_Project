@@ -22,6 +22,12 @@ ListHead::ListHead(int fileLength)
     pTree = new BST();
 }
 
+ListHead::~ListHead()
+{
+    destroyHash();
+    destroyBST();
+}
+
 Hash* ListHead::getHash()
 {
     return pHash;
@@ -31,3 +37,13 @@ BST* ListHead::getBST()
 {
     return pTree;
 }
+
+void ListHead::destroyHash()
+{
+    pHash->destroyHash();
+}
+void ListHead::destroyBST()
+{
+    pTree->BST_destroy();
+}
+

@@ -279,6 +279,19 @@ void Hash::reHash()
     
 }
 
+//////////////////
+// Destroy Hash //
+//////////////////
+/**
+ *     Displays all items in the hash.
+ */
+void Hash::destroyHash()
+{
+    for(int i = 0; i<tableSize;i++)
+    {
+        hashList[i].destroyBucket();
+    }
+}
 
 
 ////////////////
@@ -289,6 +302,8 @@ void Hash::reHash()
  */
 Hash::~Hash()
 {
+    destroyHash();
+    delete [] hashList;
 }
 
 ////////////////////

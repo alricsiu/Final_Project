@@ -57,6 +57,7 @@ public:
     Bucket* getHashList();
     
     void reHash();
+    void destroyHash();
 
     static int getNextPrime(int currentNumber);
     

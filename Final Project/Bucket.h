@@ -45,6 +45,8 @@ public:
     App* getLocation(int);
     void setBucket(int, App*);
     
+    void destroyBucket();
+    
     
 };
 

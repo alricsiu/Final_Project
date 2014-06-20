@@ -43,6 +43,9 @@ App::App(int uniqueKey, string appName, string author, string category)
 App::~App()
 {
     uniqueKey = 0;
+    appName = "";
+    author = "";
+    category = "";
 }
 
 /**

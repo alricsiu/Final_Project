@@ -179,6 +179,9 @@ int main()
                 break;
         }
     }
+    
+    //Cleanup BST and Hash
+    delete listHead;
 
 }
  
