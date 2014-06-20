@@ -54,10 +54,10 @@ Games
 What’s the Difference? ~ spot the differences & hidden objects in this photo puzzle hunt!
 Candywriter, LLC
 Games
-282935706
-Bible
-LifeChurch.tv
-Reference
+284035177
+Pandora Radio
+Pandora Media, Inc.
+Music
 290638154
 iHeartRadio – Free Music & Internet AM/FM Radio Stations
 Clear Channel Management Services, LP
@@ -106,10 +106,6 @@ Health & Fitness
 eBay
 eBay Inc.
 Lifestyle
-284035177
-Pandora Radio
-Pandora Media, Inc.
-Music
 284882215
 Facebook
 Facebook, Inc.
@@ -162,6 +158,10 @@ Games
 AFilter
 MAKE A
 Photo & Video
+1
+Alric
+Test
+Test
 284993459
 Shazam
 Shazam Entertainment Ltd.

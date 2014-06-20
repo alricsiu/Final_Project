@@ -475,7 +475,7 @@ void BST::_BST_BreadthFirstTraversals_Q(string filename) const
     
     if(!outputfile)
     {
-        cout << "cannot open output file" << endl;
+        cout << "Cannot open output file" << endl;
         exit(1);
     }
     
@@ -490,7 +490,12 @@ void BST::_BST_BreadthFirstTraversals_Q(string filename) const
     {
         BST_Node* temp;
         q.queueFront(temp);
-        outputfile << temp -> data -> getUniqueKey() << " ";
+        outputfile << temp -> data -> getUniqueKey() << endl;
+        outputfile << temp -> data -> getAppName() << endl;
+        outputfile << temp -> data -> getAuthor() << endl;
+        outputfile << temp -> data -> getCategory() << endl;
+
+
         q.dequeue(temp);
         
         if(temp -> left)

@@ -126,6 +126,8 @@ int main()
                 
                 listHead->getBST()->BST_insert(app);
                 listHead->getHash()->insert(app);
+                
+                listHead->getBST()->outputTofile("data.txt");
 
             }
                 break;
@@ -139,6 +141,8 @@ int main()
                 else
                     cout<<"Program Error! Delete mismatch - Contact administrator"<<endl;
                 delete hashResult;
+                listHead->getBST()->outputTofile("data.txt");
+
             }
                 break;
             case SEARCH_CHOICE:
@@ -190,6 +194,7 @@ int main()
         }
     }
     
+    listHead->getBST()->outputTofile("data.txt");
     //Cleanup BST and Hash
     delete listHead;
 
