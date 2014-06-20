@@ -62,8 +62,7 @@ void getValidRange(int &, int &);
 
 int countLines(ifstream &inputFile);
 void parseToListHead(ListHead* , ifstream &, string);
-void handleSearch(App*);
-
+void handleResult(App* result, string displayMessage);
 
 
 //////////
@@ -131,18 +130,20 @@ int main()
             case DELETE_CHOICE:
             {
                 int key = getValidKey(" Enter Unique Key:");
-                cout<<key;
-                handleSearch(listHead->getBST()->BST_delete(key));
-                cout<<key;
-                handleSearch(listHead->getHash()->remove(key));
-                cout<<"Delete Choice";
+                App *bstResult = listHead->getBST()->BST_delete(key);
+                App *hashResult = listHead->getHash()->remove(key);
+                if(bstResult == hashResult)
+                    handleResult(hashResult,"Deleted Item");
+                else
+                    cout<<"Program Error! Delete mismatch - Contact administrator"<<endl;
+                delete hashResult;
             }
                 break;
             case SEARCH_CHOICE:
             {
                 int key = getValidKey(" Enter Unique Key:");
                 App *app = listHead->getHash()->search(key);
-                handleSearch(app);
+                handleResult(app, "Search Result");
             }
                 break;
             case PRINT_HASH_LIST:
@@ -369,11 +370,11 @@ int getValidKey(string displayMessage)
  * Generates the output from the result App returned from searching the Hash list.
  * @param result A App* that is the search result.
  */
-void handleSearch(App* result)
+void handleResult(App* result, string displayMessage)
 {
     if(result)
     {
-        cout<<"\tSearch Result:"<<endl;
+        cout<<"\t"<<displayMessage<<":"<<endl;
         cout<<"\t\t"<<"Unique Key: "<<result->getUniqueKey()<<endl;
         cout<<"\t\t"<<"App Name: "<<result->getAppName()<<endl;
         cout<<"\t\t"<<"Author: "<<result->getAuthor()<<endl;
