@@ -32,8 +32,8 @@ public:
     ListHead();
     ~ListHead();
     
-    Hash getHash();
-    BST getBST();
+    Hash* getHash();
+    BST* getBST();
     //Member Functions
     
     

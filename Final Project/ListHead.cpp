@@ -7,3 +7,21 @@
 //
 
 #include "ListHead.h"
+#include "Hash.h"
+#include "BST.h"
+
+ListHead::ListHead()
+{
+    pHash = new Hash();
+    pTree = new BST();
+}
+
+Hash* ListHead::getHash()
+{
+    return pHash;
+}
+
+BST* ListHead::getBST()
+{
+    return pTree;
+}

@@ -56,10 +56,11 @@ const string WELCOME_STATEMENT = "Welcome to the Binary Search Tree Program.  Th
 
 int menu(bool);
 char getValidChar();
-int getValidKey();
+int getValidKey(string);
+string getValidString(string);
 void getValidRange(int &, int &);
 
-void parsetoBinaryTree(BST *, Hash *, ifstream &, string);
+void parseToListHead(ListHead* , ifstream &, string);
 
 //////////
 // Main //
@@ -86,40 +87,13 @@ int main()
         return -1; //unable to open file.
     }
 
-    BST *BSTTree = new BST();
-    Hash *hash = new Hash;
+    ListHead *listHead = new ListHead();
     
-    parsetoBinaryTree(BSTTree, hash, inputFile, filename);
+    parseToListHead(listHead, inputFile, filename);
     
-    //test driving hash search; feel free to delete.
-    App testapp;
-    if (!hash->search(848218959, testapp))
-        cout << "Not found!\n";
-    else
-        cout << "found!\n";
-    if (!hash->search(123124123, testapp))
-        cout << "Not found!\n";
-    else
-        cout << "found!\n";
-    
-    hash->displayHash();
-    
-    if (!hash->deleteElem(848218959))
-        cout << "App not found; not deleted\n";
-    else
-        cout << "deleted!\n";
-    
-    hash->printHash();
-    
-    return 0; ////////
     
     inputFile.close();
     
-    //REHASH TEST:
-//    hash->printHash();
-//    cout << "^^^^ ABOVE IS BEFORE REHASH\n";
-//    hash->rehash();
-//    hash->printHash();
     
     char choice;    // To hold a menu choice
     
@@ -136,7 +110,16 @@ int main()
                 break;
             case INSERT_CHOICE:
             {
-               cout<<"Insert choice";
+                string appName = getValidString(" Enter App Name:");
+                int key = getValidKey(" Enter Unique Key:");
+                string author = getValidString(" Enter Author:");
+                string category = getValidString(" Enter Category:");
+
+                App *app = new App(key, appName, author, category);
+                
+                listHead->getBST()->BST_insert(app);
+                listHead->getHash()->insert(app);
+
             }
                 break;
             case DELETE_CHOICE:
@@ -146,29 +129,30 @@ int main()
                 break;
             case SEARCH_CHOICE:
             {
-                int key = getValidKey();
+//                int key = getValidKey();
 //                BSTNode *result = BSTTree->search(key);
 //                handleSearch(result);
             }
                 break;
             case PRINT_HASH_LIST:
             {
-                cout<<"Print hash list";
-                hash->printHash();
+                cout << "Hash Contents:" << endl;
+                listHead->getHash()->printHash();
             }
                 break;
             case PRINT_KEY_LIST:
             {
-                cout<<"Print key sequence";
+                cout<<"  Data in Key Sequence:"<<endl;
+                listHead->getBST()->BST_list();
             }
                 break;
             case PRINT_TREE_CHOICE:
             {
                 cout<<endl<<"Binary Search Tree displayed below:"<<endl<<endl;
-                if(BSTTree->getCount())
-                    BSTTree->BST_print();
-                else
-                    cout<<"\t BST Tree is empty."<<endl<<endl;
+//                if(BSTTree->getCount())
+//                    BSTTree->BST_print();
+//                else
+//                    cout<<"\t BST Tree is empty."<<endl<<endl;
             }
                 break;
             case SAVE_TO_FILE_CHOICE:
@@ -178,8 +162,7 @@ int main()
                 break;
             case HASH_STATS_CHOICE:
             {
-                cout<<"Hash Stats file choice";
-                hash->showStats();
+                listHead->getHash()->showStats();
             }
                 break;
         }
@@ -211,7 +194,7 @@ int menu(bool showMenu)
         << PRINT_HASH_LIST
         << " - Prints Hash List\n\t"
         << PRINT_KEY_LIST
-        << " - Prints list of entries in sequential order\n\t"
+        << " - Print list of entries in key sequence.\n\t"
         << PRINT_TREE_CHOICE
         << " - Print Tree as an Indented List\n\t"
         << SAVE_TO_FILE_CHOICE
@@ -312,6 +295,35 @@ void getValidRange(int &lowerbound, int &upperbound)
 }
 
 ////////////////////
+// getValid String   //
+////////////////////
+/**
+ * This function prompts the user to enter an integer that is a valid key.
+ * If the input is not valid ( not an integer ) it
+ * prompts the user to enter a new integer, until the input is valid.
+ *
+ * @return The integer that the user inputs that is valid.
+ */
+string getValidString(string displayMessage)
+{
+    string result;
+    bool success;
+    
+    do
+    {
+//        cout << " Enter a unique key: ";
+        cout << displayMessage;
+        cin >> result;
+        success = !cin.fail();
+        cin.clear();          // to clear the error flag
+        cin.ignore(80, '\n'); // to discard the unwanted input from the input buffer
+    }while(!success);
+    
+    return result;
+}
+
+
+////////////////////
 // getValid Key   //
 ////////////////////
 /**
@@ -321,14 +333,14 @@ void getValidRange(int &lowerbound, int &upperbound)
  *
  * @return The integer that the user inputs that is valid.
  */
-int getValidKey()
+int getValidKey(string displayMessage)
 {
     int num;
     bool success;
     
     do
     {
-        cout << " Enter a unique key: ";
+        cout << displayMessage;
         cin >> num;
         success = !cin.fail();
         cin.clear();          // to clear the error flag
@@ -351,7 +363,7 @@ int getValidKey()
  * @param tree      The BST tree to insert the entries into.
  * @param inputFile The inputfile with the entries. Entries must span 4 lines, separated by new lines. 
  */
-void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filename)
+void parseToListHead(ListHead *listHead, ifstream &inputFile, string filename)
 {
     char c;
 
@@ -398,8 +410,9 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
                     int key;
                     istringstream ( uniquekey ) >> key;
                     App *app = new App(key, appName, author, category);
-                    //tree->insert(app);
-                    hash->insert(app);
+                    
+                    listHead->getHash()->insert(app);
+                    listHead->getBST()->BST_insert(app);
                     
                     counter = 0;
 

@@ -98,7 +98,7 @@ bool Hash::insert(App * newApp)
             i++;
         if(i >= 3){
             hashTable[searchKey]->full = true;
-            cout<< "Bucket " << searchKey << " is full." << endl;
+//            cout<< "Bucket " << searchKey << " is full." << endl;
             rehash();
         }
         else {
@@ -158,22 +158,26 @@ void Hash::displayHash()
 //***************************************************************************
 void Hash::printHash()
 {
-    cout << "Hash Contents:" << endl << "---------------" << endl;
     for(int i = 0; i < tableSize; i++){
-        cout << "Bucket " << i << ": ";
+        cout << "Bucket " << i << ":"<<endl;
         for(int j = 0; j < bucketSize; j++){
-            if(j){cout << "\t\tLocation " << j << ":";}
-            else cout << "Location " << j << ":";
+             cout << "\tLocation " << j << ": ";
             if (hashTable[i]) {
                 if (hashTable[i]->appArray[j]) {
-                    cout << " App Id: " << hashTable[i]->appArray[j]->getUniqueKey() << endl;
-                    cout << "\t\t\tName: " << hashTable[i]->appArray[j]->getAppName() << endl;
-                    cout << "\t\t\tPublisher: " << hashTable[i]->appArray[j]->getAuthor() << endl;
-                    cout << "\t\t\tCategory: " << hashTable[i]->appArray[j]->getCategory();
+                    cout << hashTable[i]->appArray[j]->getUniqueKey() << endl;
+//                    cout << "\t\t\tName: " << hashTable[i]->appArray[j]->getAppName() << endl;
+//                    cout << "\t\t\tPublisher: " << hashTable[i]->appArray[j]->getAuthor() << endl;
+//                    cout << "\t\t\tCategory: " << hashTable[i]->appArray[j]->getCategory();
                 }
+                else{
+                    cout<<"Empty"<<endl;
+                }
+
             }
-            cout << "\n-----------------------\n";
-            
+            else
+            {
+                cout << "Empty" <<endl;
+            }
         }
     }
     
@@ -186,11 +190,11 @@ void Hash::printHash()
 void Hash::showStats()
 {
     cout << "Hash Statistics:" <<endl;
-    cout << "----------------" << endl;
-    cout << "Collision Frequency: " << collisionCount << " of " << dataCount << " elements.\n";
-    cout << entryCount << " buckets have data out of " << tableSize << " buckets\n";
-    cout << "Load Factor: " << getLoadFactor() << endl;
-    cout << "Buckets Full: " << fullCount() << endl << endl;
+    cout << "\tCollision Frequency: " << collisionCount << " of " << dataCount << " elements.\n";
+    cout << "\tLoad Factor: " << getLoadFactor() << endl;
+    cout << "\tBuckets Full: " << fullCount() << endl;
+    cout << "\tTotal Entries: " << entryCount<<endl;
+    cout << "\tTotal Buckets: " << tableSize<<endl;
     
 }
 //***************************************************************************
@@ -221,9 +225,9 @@ int Hash::fullCount(){
 bool Hash::rehash(){
     // call rehash as member function of original hashtable
     int former_tableSize = tableSize;
-    cout << "former tablesize: " << former_tableSize << endl;
+//    cout << "former tablesize: " << former_tableSize << endl;
     tableSize = getNextPrime(tableSize);
-    cout << "New TableSize: " << tableSize << endl; // increase table size
+//    cout << "New TableSize: " << tableSize << endl; // increase table size
     
     Hash * reHashTable = new Hash(tableSize);
     // call constructor

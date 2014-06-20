@@ -398,7 +398,7 @@ void BST::_InorderTraverse() const
             if(!s.isEmpty())
             {
                 s.getTop(temp);
-                cout << temp -> data->getUniqueKey() << " ";
+                cout <<  "\t"<< temp -> data->getUniqueKey() << " - "<< temp->data->getAppName() << endl;
                 s.pop(temp);
                 temp = temp -> right;
             }
