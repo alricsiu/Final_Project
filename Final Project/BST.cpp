@@ -252,7 +252,7 @@ void BST::_delete(BST_Node* target)
             }
         }
         
-        delete target;
+        delete smallestNode;
         return;
     }
     
