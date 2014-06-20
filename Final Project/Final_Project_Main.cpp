@@ -191,6 +191,7 @@ int main()
     }
     
     listHead->getBST()->outputTofile("data.txt");
+    cout << "The updated data has been saved to "<< DATABASE <<endl;;
     //Cleanup BST and Hash
     delete listHead;
 
