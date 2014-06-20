@@ -67,8 +67,7 @@ App* BST::BST_delete(int target)
         return NULL;
     }
     
-    _delete(found);
-    return found -> data;
+    return _delete(found);
 }
 
 //***************************************************************************
@@ -212,7 +211,7 @@ BST::BST_Node* BST::_LargestNodeinRightSubtree(BST_Node* target)
 //  This funtion deletes a node from the tree
 //  The parameter is BST_Node* target
 //***************************************************************************
-void BST::_delete(BST_Node* target)
+App* BST::_delete(BST_Node* target)
 {
     
     // save original app data to be deleted.
@@ -270,9 +269,8 @@ void BST::_delete(BST_Node* target)
             }
         }
         
-        target->data = original;
         //delete target;
-        return;
+        return original;
     }
     
     // target is the root
@@ -296,8 +294,8 @@ void BST::_delete(BST_Node* target)
             target -> right = NULL;
         }
         
-        delete target;
-        return;
+//        delete target;
+        return original;
     }
     
     // target is a leaf
@@ -312,8 +310,8 @@ void BST::_delete(BST_Node* target)
             target -> parent -> right = NULL;
         }
         target -> parent = NULL;
-        delete target;
-        return;
+//        delete target;
+        return original;
     }
     
     // target has only one child which is its right child
@@ -331,8 +329,8 @@ void BST::_delete(BST_Node* target)
         }
         target -> parent = NULL;
         target -> right = NULL;
-        delete target;
-        return;
+//        delete target;
+        return original;
     }
     
     // target has only one child which is its left child
@@ -350,11 +348,13 @@ void BST::_delete(BST_Node* target)
         }
         target -> parent = NULL;
         target -> right = NULL;
-        delete target;
-        return;
+//        delete target;
+        return original;
     }
     
 
+    return original;
+    
 }
 
 

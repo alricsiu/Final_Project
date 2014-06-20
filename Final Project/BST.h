@@ -140,7 +140,7 @@ private:
     //  This funtion deletes a node from the tree
     //  The parameter is BST_Node* target
     //***************************************************************************
-    void _delete(BST_Node* target);
+    App* _delete(BST_Node* target);
     
     //***************************************************************************
     //  This funtion searches a node by an unique key
