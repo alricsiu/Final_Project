@@ -211,9 +211,10 @@ void Bucket::destroyBucket()
     {
         if(locations[i])
         {
-            delete locations[i];
-            App* temp = locations[i]; //clean up pointer
-            temp = NULL;
+            locations[i] = NULL;
+//            delete locations[i];
+//            App* temp = locations[i]; //clean up pointer
+//            temp = NULL;
         }
     }
 }

@@ -31,7 +31,7 @@ class BST
         BST_Node* left;
         BST_Node* right;
         BST_Node* parent;
-        BST_Node() : data(new App), left(NULL), right(NULL), parent(NULL) {}
+        BST_Node() : data(NULL), left(NULL), right(NULL), parent(NULL) {}
         ~BST_Node() {
             //delete data;
         }
@@ -145,7 +145,7 @@ private:
     //  This funtion deletes a node from the tree
     //  The parameter is BST_Node* target
     //***************************************************************************
-    App* _delete(BST_Node* target);
+    void _delete(BST_Node* target);
     
     //***************************************************************************
     //  This funtion searches a node by an unique key

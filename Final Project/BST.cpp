@@ -67,7 +67,11 @@ App* BST::BST_delete(int target)
         return NULL;
     }
     
-    return _delete(found);
+    App* old = found -> data;
+    
+    _delete(found);
+    
+    return old;
 }
 
 //***************************************************************************
@@ -190,16 +194,16 @@ BST::BST_Node* BST::_LargestNodeinRightSubtree(BST_Node* target)
 //  This funtion deletes a node from the tree
 //  The parameter is BST_Node* target
 //***************************************************************************
-App* BST::_delete(BST_Node* target)
+void BST::_delete(BST_Node* target)
 {
     
     // save original app data to be deleted.
-    App* original = target->data;
+    // App* original = target->data;
 
     // create a working copy of the data so the original app data is not destroyed.
-    App* buffer = new App(target->data->getUniqueKey(), target->data->getAppName(), target->data->getAuthor(), target->data->getCategory());
+    // App* buffer = new App(target->data->getUniqueKey(), target->data->getAppName(), target->data->getAuthor(), target->data->getCategory());
     
-    target->data = buffer;
+    // target->data = buffer;
     
     
     // target has both left and right children
@@ -248,8 +252,8 @@ App* BST::_delete(BST_Node* target)
             }
         }
         
-        //delete target;
-        return original;
+        delete target;
+        return;
     }
     
     // target is the root
@@ -273,8 +277,8 @@ App* BST::_delete(BST_Node* target)
             target -> right = NULL;
         }
         
-//        delete target;
-        return original;
+        delete target;
+        return;
     }
     
     // target is a leaf
@@ -289,8 +293,8 @@ App* BST::_delete(BST_Node* target)
             target -> parent -> right = NULL;
         }
         target -> parent = NULL;
-//        delete target;
-        return original;
+        delete target;
+        return;
     }
     
     // target has only one child which is its right child
@@ -308,8 +312,8 @@ App* BST::_delete(BST_Node* target)
         }
         target -> parent = NULL;
         target -> right = NULL;
-//        delete target;
-        return original;
+        delete target;
+        return;
     }
     
     // target has only one child which is its left child
@@ -327,12 +331,12 @@ App* BST::_delete(BST_Node* target)
         }
         target -> parent = NULL;
         target -> right = NULL;
-//        delete target;
-        return original;
+        delete target;
+        return;
     }
     
 
-    return original;
+    return;
     
 }
 
@@ -469,13 +473,14 @@ void BST::_BST_BreadthFirstTraversals_Q(string filename) const
     {
         BST_Node* temp;
         q.queueFront(temp);
+        q.dequeue(temp);
+        
+        if (!temp -> data) continue;
+        
         outputfile << temp -> data -> getUniqueKey() << endl;
         outputfile << temp -> data -> getAppName() << endl;
         outputfile << temp -> data -> getAuthor() << endl;
         outputfile << temp -> data -> getCategory() << endl;
-
-
-        q.dequeue(temp);
         
         if(temp -> left)
         {
