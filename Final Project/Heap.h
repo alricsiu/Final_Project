@@ -22,7 +22,7 @@ class Heap
 private:
 	Data *maxHeap;						//an array of Apps that will be a max heap
 	int count;							//the number of elements in the heap
-	static const int MAXSIZE = 31;		//the maximum size allowed for the heap
+	static const int MAXSIZE = 300;		//the maximum size allowed for the heap
 	
 public:
 	Heap(void);

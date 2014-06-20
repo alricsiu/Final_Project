@@ -42,7 +42,9 @@ FREQUENT_SEARCH= 'G',
 TOGGLE_MENU = 'M',
 QUIT_CHOICE = 'Q';
 
-const string WELCOME_STATEMENT = "Welcome to the Binary Search Tree Program.  This program parses a file of top iOS Applications into a binary search tree and allow a user to interact with the tree.\n\n";
+const string WELCOME_STATEMENT = "Welcome to our Mobile App Database.  This program parses a file of top iOS Applications into a binary search tree and hash table, allowing a user to interact with the data structures.\n\n";
+
+const string DATABASE = "data.txt";
 
 ////////////////
 // Prototypes //
@@ -73,7 +75,7 @@ int main()
 
     cout<<"Loaded Input file: Data.txt\n";
 
-    string filename = "data.txt";
+    string filename = DATABASE;
     
     inputFile.open(filename);
     if (!inputFile)
@@ -117,9 +119,6 @@ int main()
                 listHead->getBST()->BST_insert(app);
                 listHead->getHash()->insert(app);
                 
-                //persist changes
-//                listHead->getBST()->outputTofile("data.txt");
-
             }
                 break;
             case DELETE_CHOICE:
@@ -136,9 +135,6 @@ int main()
                     cout<<"Program Error! Delete mismatch - Contact administrator"<<endl;
                 
                 delete hashResult;
-                //persist changes
-//                listHead->getBST()->outputTofile("data.txt");
-
             }
                 break;
             case SEARCH_CHOICE:
