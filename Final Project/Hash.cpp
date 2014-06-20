@@ -14,8 +14,6 @@ int Hash::getTableSize()
     return tableSize;
 }
 
-//this function might be unnecessary because the rehashing
-//is done as a member function.
 void Hash::setTableSize(int newTableSize)
 {
     tableSize = newTableSize;
@@ -29,15 +27,14 @@ int Hash::getEntryCount()
 {
     return entryCount;
 }
-//
-//void Hash::incrementEntryCount()
-//{
-//    ++entryCount;
-//}
-//
+
+void Hash::incrementEntryCount()
+{
+    ++entryCount;
+}
+
 int Hash::getNextPrime(int currentprime)
 {
-    //Doubles current prime number for rehash
     
     // getNextPrime traverses the prime array until the array
     // element is greater than two times the current table size (also a prime)
@@ -45,7 +42,7 @@ int Hash::getNextPrime(int currentprime)
     int dbl_currentprime = currentprime*2;
     int count = 0;
     
-
+    
     while(dbl_currentprime > primes[count] && count < 100){
         count++;
     }
@@ -56,14 +53,16 @@ int Hash::getNextPrime(int currentprime)
  int i = searchKey;
  return
  }*/
-bool Hash::search(int searchKey){
-    for(int i = 0; i < tableSize; i++){
+bool Hash::search(int searchKey, App &foundElem){
+    int i = hasher(searchKey);
+    if (hashTable[i])
         for(int j = 0; j < bucketSize; j++){
-            if(searchKey == hashTable[i]->appArray[j]->getUniqueKey()){
-                return true;
-            }
+            if (hashTable[i]->appArray[j])
+                if(searchKey == hashTable[i]->appArray[j]->getUniqueKey()){
+                    foundElem = *hashTable[i]->appArray[j];
+                    return true;
+                }
         }
-    }
     return false;
 }
 
@@ -92,43 +91,36 @@ bool Hash::insert(App * newApp)
     int searchKey = hasher(newApp->getUniqueKey());
     bool insertSuccess = false;
     if(empty) empty = false;
-    //While there is a positively defined value for appId
-    // continue iterating through the bucket until you find
-    // an empty location
-    
-    // check load factor each time
-    // if over 75 then rehash
+
     if (hashTable[searchKey])
     {
         while (i < 3 && hashTable[searchKey]->appArray[i])
             i++;
-        if (i)
-            collisionCount++;
         if(i >= 3){
             hashTable[searchKey]->full = true;
             cout<< "Bucket " << searchKey << " is full." << endl;
+            rehash();
         }
         else {
             hashTable[searchKey]->appArray[i] = newApp;
-//            cout << "Collision count incremented to " << collisionCount << endl;
+            collisionCount++;
             insertSuccess = true;
             hashTable[searchKey]->count++; //increments number of valid elements per bucket.
         }
     }
     else {
+        // First data node inserted for that hashTable index.
         hashTable[searchKey] = new bucketNode;
         hashTable[searchKey]->count = 1;
         for (int j = 0; j < bucketSize; j++)
             hashTable[searchKey]->appArray[j] = nullptr;
-        hashTable[searchKey]->appArray[i] = newApp;
+        hashTable[searchKey]->appArray[0] = newApp;
         
-        //housekeeping
         insertSuccess = true;
-        hashTable[searchKey]->count++;
         entryCount++; // updates
     }
     
-    // after successful insert, check need for rehash
+    // after successful insert, check need for rehash based on load factor
     if (insertSuccess) {
         dataCount++;
         if (getLoadFactor() > 75)
@@ -146,13 +138,16 @@ void Hash::displayHash()
 {
     cout << "Hash Contents:" << endl << "---------------" << endl;
     for(int i = 0; i < tableSize; i++){
-        for(int j = 0; j < bucketSize; j++){
-            if(hashTable[i]->appArray[j]->getUniqueKey()){
-                cout << "App Id: " << hashTable[i]->appArray[j]->getUniqueKey() << endl;
-                cout << "\tName: " << hashTable[i]->appArray[j]->getAppName() << endl;
-                cout << "\tPublisher: " << hashTable[i]->appArray[j]->getAuthor() << endl;
-                cout << "\tCategory: " << hashTable[i]->appArray[j]->getCategory() << endl;
-                cout << "-----------------------" << endl;
+        if (hashTable[i]) {
+            for(int j = 0; j < bucketSize; j++){
+                if (hashTable[i]->appArray[j])
+                    if(hashTable[i]->appArray[j]->getUniqueKey()){
+                        cout << "App Id: " << hashTable[i]->appArray[j]->getUniqueKey() << endl;
+                        cout << "\tName: " << hashTable[i]->appArray[j]->getAppName() << endl;
+                        cout << "\tPublisher: " << hashTable[i]->appArray[j]->getAuthor() << endl;
+                        cout << "\tCategory: " << hashTable[i]->appArray[j]->getCategory() << endl;
+                        cout << "-----------------------" << endl;
+                    }
             }
         }
     }
@@ -238,48 +233,41 @@ bool Hash::rehash(){
             for (int j = 0; j < bucketSize; j++)
                 if (hashTable[i]->appArray[j])
                     if (!reHashTable->insert(hashTable[i]->appArray[j]))
-                        return false;
-    
-    //does rehashing with tableSize already set to new value.
-    
-    //Alright LOOKS good probably better than my hash algorithm but here it is anyways:
-    /*
-     
-     int newTableSize = getNextPrime(tableSize);
-     Hash *reHashTable = new Hash(newTableSize);
-     reHashTable->hashTable = new bucketNode[newTableSize];
-     for(int i = 0; i < tableSize; i++){
-     for(int j = 0; j < bucketSize; j++){
-     if(hashTable[i].appArray[j].appId > 0){
-     int searchKey = hasher(hashTable[i].appArray[j].appId, newTableSize);
-     reHashTable->insert(searchKey, hashTable[i].appArray[j]);
-     }
-     }
-     }
-     tableSize = newTableSize;
-     hashTable = reHashTable->hashTable;
-     collisionCount = reHashTable->collisionCount;
-     entryCount = reHashTable->entryCount;
-     
-     }
-
-     
-     
-     */
-    
-    // iterate through each element of current hashtable
-    // run it through the hashtable and take each app
-    // run the hasher function on it.
-    // insert and transfer all fields
+                        return false; ///asdfasdfasdfasdfasd
     
     delete hashTable;
     hashTable = reHashTable->hashTable;
     
     
     return true;
-    //pass reference back to pointer in main
-    //
-    
+}
+
+//********************************************************************
+// The deleteElem function tries to find the element with a specified*
+// app ID in the hashTable by first hashing the ID to determine the *
+// element in the hash table (if it exists). It returns true if the *
+// app was found and successfully deleted, and false otherwise.     *
+//********************************************************************
+bool Hash::deleteElem(int appID)
+{
+    int key = hasher(appID);
+    int i, j;
+    if (!hashTable[key])
+        return false;
+    for (i = 0; i < bucketSize; i++) {
+        if (hashTable[key]->appArray[i]->getUniqueKey() == appID) {
+            delete hashTable[key]->appArray[i];
+            if (i < bucketSize) {// index of 2 is end of array, so this tests whether current i has another element after it
+                // shifting
+                for (j = i + 1; j < bucketSize && hashTable[key]->appArray[j]; j++, i++) {
+                    hashTable[key]->appArray[i] = hashTable[key]->appArray[j];
+                    hashTable[key]->appArray[j] = nullptr;
+                }
+            }
+            return true;
+        }
+    }
+    return false;
 }
 
 //******************************************************************
@@ -287,10 +275,10 @@ bool Hash::rehash(){
 // after an element is deleted from the hashtable. It essentially  *
 // fills the gaps and shifts everything.                           *
 //******************************************************************
-void Hash::shift()
-{
-    
-}
+//void Hash::shift()
+//{
+//
+//}
 
 
 //Constructor
@@ -305,10 +293,9 @@ Hash::Hash()
 
 Hash::Hash(int lineCount)
 {
-    hashTable = new bucketNode * [tableSize];
-    this->tableSize = getNextPrime(lineCount *2);
-;
+    hashTable = new bucketNode * [lineCount];
+    this->tableSize = lineCount;
     for (int i = 0; i < tableSize; i++)
-        hashTable[i] = nullptr; // safety
+        this->hashTable[i] = nullptr; // safety
     dataCount = 0;
 }

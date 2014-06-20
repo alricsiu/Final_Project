@@ -24,14 +24,16 @@ private:
     int arySize;
     int bucketSize = BUCKET_SIZE;
     
-    Hash pHash;
-    BST pTree;
+    Hash *pHash;
+    BST *pTree;
     
 public:
     //Constructor
     ListHead();
     ~ListHead();
     
+    Hash getHash();
+    BST getBST();
     //Member Functions
     
     

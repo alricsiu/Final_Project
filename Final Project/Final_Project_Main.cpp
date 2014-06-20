@@ -23,9 +23,7 @@
 using namespace std;
 
 #include "BST.h"
-//#include "Hash.h"
-#include "App.h"
-#include "Hash.h"
+#include "ListHead.h"
 
 const char INSERT_CHOICE = 'I',
 DELETE_CHOICE = 'D',
@@ -90,7 +88,30 @@ int main()
 
     BST *BSTTree = new BST();
     Hash *hash = new Hash;
+    
     parsetoBinaryTree(BSTTree, hash, inputFile, filename);
+    
+    //test driving hash search; feel free to delete.
+    App testapp;
+    if (!hash->search(848218959, testapp))
+        cout << "Not found!\n";
+    else
+        cout << "found!\n";
+    if (!hash->search(123124123, testapp))
+        cout << "Not found!\n";
+    else
+        cout << "found!\n";
+    
+    hash->displayHash();
+    
+    if (!hash->deleteElem(848218959))
+        cout << "App not found; not deleted\n";
+    else
+        cout << "deleted!\n";
+    
+    hash->printHash();
+    
+    return 0; ////////
     
     inputFile.close();
     
@@ -377,7 +398,6 @@ void parsetoBinaryTree(BST *tree, Hash *hash, ifstream &inputFile, string filena
                     int key;
                     istringstream ( uniquekey ) >> key;
                     App *app = new App(key, appName, author, category);
-                    bool rehash_success = false;
                     //tree->insert(app);
                     hash->insert(app);
                     
