@@ -102,10 +102,10 @@ Games
 Sleep Genius With Revive Cycle Alarm – Power Nap, Relaxation, Sleep Tracking
 Sleep Genius LLC
 Health & Fitness
-282614216
-eBay
-eBay Inc.
-Lifestyle
+10
+Water
+Alric
+Fun
 284035177
 Pandora Radio
 Pandora Media, Inc.
@@ -114,10 +114,10 @@ Music
 Facebook
 Facebook, Inc.
 Social Networking
-297606951
-Amazon App
-AMZN Mobile LLC
-Lifestyle
+310633997
+WhatsApp Messenger
+WhatsApp Inc.
+Social Networking
 324684580
 Spotify Music
 Spotify Ltd.
@@ -166,10 +166,10 @@ Photo & Video
 Shazam
 Shazam Entertainment Ltd.
 Music
-310633997
-WhatsApp Messenger
-WhatsApp Inc.
-Social Networking
+304158842
+Yahoo
+Yahoo
+News
 333903271
 Twitter
 Twitter, Inc.
@@ -222,10 +222,10 @@ Photo & Video
 Hotels.com – Hotel Booking and last minute hotel deals
 Hotels.com
 Travel
-304158842
-Yahoo
-Yahoo
-News
+304878510
+Skype for iPhone
+Skype Communications S.a.r.l
+Social Networking
 336353151
 SoundCloud: stream music & audio and listen to playlists
 SoundCloud Ltd.
@@ -290,10 +290,6 @@ Games
 Yelp
 Yelp
 Travel
-304878510
-Skype for iPhone
-Skype Communications S.a.r.l
-Social Networking
 368494609
 QR Reader for iPhone
 TapMedia Ltd

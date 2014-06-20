@@ -1,6 +1,6 @@
 //
 //  App.cpp
-//  Lab 4
+//  Final Project
 //
 //  Created by Alric Siu on 5/25/14.
 //  Copyright (c) 2014 Alric Siu. All rights reserved.
@@ -28,6 +28,10 @@ App::App()
 ////////////////
 /**
  * Takes all private member variables as parameters.
+ * @param uniqueKey The unique key.
+ * @param appName   The app name.
+ * @param author    The author name.
+ * @param category  The app category.
  */
 App::App(int uniqueKey, string appName, string author, string category)
 {

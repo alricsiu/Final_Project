@@ -297,6 +297,7 @@ void Hash::reHash()
     }
     
     this->tableSize = rehashbuffer->tableSize;
+    delete [] this->hashList;
     this->hashList = rehashbuffer->hashList;
     this->count = rehashbuffer->count;
     this->collisions = rehashbuffer ->collisions;

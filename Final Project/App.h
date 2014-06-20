@@ -1,6 +1,6 @@
 //
 //  App.cpp
-//  Lab 4
+//  Final Project
 //
 //  App class that contains all the information for each mobile app entry.
 //
@@ -33,8 +33,7 @@ public:
     // Destructor
     ~App();
     
-    // ListNode operations
-    
+    // App operations
     void print();
     
     void setUniqueKey(int);

@@ -33,7 +33,6 @@ private:
  
 public:
     
-    
    //Constructor
     Hash();
     Hash(int tableSize);
