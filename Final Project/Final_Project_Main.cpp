@@ -285,8 +285,6 @@ char getValidChar()
 string getValidString(string displayMessage)
 {
     string result;
-    bool success;
-    
     cout << displayMessage;
     getline(cin , result);
 
