@@ -1,6 +1,6 @@
 //
 //  Bucket.cpp
-//  Lab 5
+//  Final Project
 //
 //  Holds the number of apps defined by BUCKET_SIZE in the hash table.
 //
@@ -34,8 +34,7 @@ public:
     
     int getCount();
     
-    // Member functions
-
+    // Bucket Operations
     App* searchBucket(int);
     int insert(App*);
     App* remove(int uniqueKey);

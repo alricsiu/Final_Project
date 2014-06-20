@@ -1,6 +1,6 @@
 //
 //  App.cpp
-//  Lab 4
+//  Final Project
 //
 //  App class that contains all the information for each mobile app entry.
 //

@@ -277,12 +277,10 @@ char getValidChar()
 // getValid String //
 /////////////////////
 /**
- * This function prompts the user to enter a string that is valid.
- * If the input is not valid ( not a string ) it
- * prompts the user to enter a new string, until the input is valid.
+ * This function prompts the user to enter a string.
  *
  * @param  displayMessage The message to be displayed to the user.
- * @return The string that the user inputs that is valid.
+ * @return The string that the user inputs until they hit a carriage return.
  */
 string getValidString(string displayMessage)
 {
@@ -292,18 +290,6 @@ string getValidString(string displayMessage)
     cout << displayMessage;
     getline(cin , result);
 
-//    do
-//    {
-////        cout << " Enter a unique key: ";
-//        cout << displayMessage;
-////        cin.clear();          // to clear the error flag
-//        cin.ignore(80, '\n'); // to discard the unwanted input from the input buffer
-//        getline(cin , result);
-//        success = !cin.fail();
-//        cin.clear();          // to clear the error flag
-//        cin.ignore(80, '\n'); // to discard the unwanted input from the input buffer
-//    }while(!success);
-//    
     return result;
 }
 
@@ -338,11 +324,11 @@ int getValidKey(string displayMessage)
 
 
 //////////////////
-//Handle Search //
+//Handle Result //
 //////////////////
 /**
  * Generates the output from the result App returned from searching the database.
- * @param result A App* that is the search result.
+ * @param result An App* that is the search result.
  */
 void handleResult(App* result, string displayMessage)
 {
