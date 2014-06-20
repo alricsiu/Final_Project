@@ -124,6 +124,9 @@ int main()
                 break;
             case DELETE_CHOICE:
             {
+                int key = getValidKey(" Enter Unique Key:");
+                listHead->getBST()->BST_delete(key);
+                listHead->getHash()->deleteElem(key);
                 cout<<"Delete Choice";
             }
                 break;
