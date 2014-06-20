@@ -2,11 +2,12 @@
 //  ListHead.cpp
 //  Final Project
 //
+//  Listhead encapsulates all operations of the program, for
+//  main to execute. It also serves to protect the data.
+//
 //  Created by Siuperman on 6/18/14.
 //  Copyright (c) 2014 Siuperman. All rights reserved.
 //
-//  Listhead encapsulates all operations of the program, for
-//  main to execute. It also serves to protect the data.
 
 #include "ListHead.h"
 #include "Hash.h"
