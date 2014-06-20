@@ -20,7 +20,8 @@
 /////////////////////////
 
 /**
- * The constructor initializes the count of the tree to zero.
+ * The constructor initializes the count of the table and
+ * number of collisions to zero.
  */
 Hash::Hash()
 {
