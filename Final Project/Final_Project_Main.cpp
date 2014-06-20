@@ -289,16 +289,21 @@ string getValidString(string displayMessage)
     string result;
     bool success;
     
-    do
-    {
-//        cout << " Enter a unique key: ";
-        cout << displayMessage;
-        cin >> result;
-        success = !cin.fail();
-        cin.clear();          // to clear the error flag
-        cin.ignore(80, '\n'); // to discard the unwanted input from the input buffer
-    }while(!success);
-    
+    cout << displayMessage;
+    getline(cin , result);
+
+//    do
+//    {
+////        cout << " Enter a unique key: ";
+//        cout << displayMessage;
+////        cin.clear();          // to clear the error flag
+//        cin.ignore(80, '\n'); // to discard the unwanted input from the input buffer
+//        getline(cin , result);
+//        success = !cin.fail();
+//        cin.clear();          // to clear the error flag
+//        cin.ignore(80, '\n'); // to discard the unwanted input from the input buffer
+//    }while(!success);
+//    
     return result;
 }
 
