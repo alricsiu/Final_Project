@@ -52,6 +52,8 @@ public:
     int getCollisions();
     double getLoadFactor();
     int  getCount();
+    int  getLongestBucketLength();
+    int  getNumFullBuckets();
     
     int getTableSize();
     Bucket* getHashList();

@@ -173,7 +173,8 @@ int main()
                 break;
             case SAVE_TO_FILE_CHOICE:
             {
-               cout<<"Save to file choice";
+                string filename = getValidString(" Enter filename:");
+                listHead->getBST()->outputTofile(filename);
             }
                 break;
             case FREQUENT_SEARCH:

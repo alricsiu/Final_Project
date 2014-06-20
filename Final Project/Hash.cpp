@@ -196,6 +196,7 @@ App* Hash::search(int uniqueKey)
  */
 void Hash::showStats()
 {
+    cout<<"  Hash Stats:"<<endl;
     
     cout <<"\tLoad Factor: " << getLoadFactor() <<endl;
     int bucketsFull=0;
@@ -209,6 +210,28 @@ void Hash::showStats()
     cout << "\tCollisions: "<< collisions<<endl;
     cout << "\tCount: "<< count<<endl;
     cout << "\tTableSize: "<< tableSize<<endl;
+    cout << "\tFull Buckets: " << getNumFullBuckets()<<endl;
+    
+    cout << "\tBucket ";
+
+    int plural;
+    int bucketLength = getLongestBucketLength();
+    for(int i = 0; i<tableSize; i++)
+    {
+        if(hashList[i].getCount()==bucketLength)
+        {
+            plural++;
+            
+            cout<<"[ "<<i<<" ] ";
+        }
+    }
+    if(plural>1l)
+        cout<<"are";
+    else
+        cout<<"is";
+    cout << " the longest bucket, with length of " << bucketLength <<".";
+
+
 
     // for Debugging to verify if the hash count is updated properly.
     /*
@@ -247,6 +270,32 @@ int Hash::getCollisions()
 double Hash::getLoadFactor()
 {
     return (double)count/tableSize;
+}
+
+int  Hash::getLongestBucketLength()
+{
+    int maxLength = 0;
+    for(int i = 0; i<tableSize;i++)
+    {
+            if(hashList[i].getCount()>maxLength)
+            {
+                maxLength = hashList[i].getCount();
+            }
+    }
+    return maxLength;
+}
+
+int  Hash::getNumFullBuckets()
+{
+    int count = 0;
+    for(int i = 0; i<tableSize;i++)
+    {
+        if(hashList[i].getCount()>=BUCKET_SIZE)
+        {
+            count++;
+        }
+    }
+    return count;
 }
 
 ////////////
