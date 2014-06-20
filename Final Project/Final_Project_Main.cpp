@@ -347,6 +347,14 @@ void handleResult(App* result, string displayMessage)
 }
 
 
+/////////////////
+// Count Lines //
+/////////////////
+/**
+ * Count the number of entries in the inputFile
+ * @param  inputFile the input file to count.
+ * @return           returns the number of entries.
+ */
 int countLines(ifstream &inputFile)
 {
     char c;

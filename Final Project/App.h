@@ -33,8 +33,7 @@ public:
     // Destructor
     ~App();
     
-    // ListNode operations
-    
+    // App operations
     void print();
     
     void setUniqueKey(int);

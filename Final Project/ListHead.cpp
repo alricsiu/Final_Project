@@ -25,6 +25,12 @@ ListHead::ListHead(int fileLength)
 
 }
 
+////////////////
+// Destructor //
+////////////////
+/**
+ *  Free's memory for all the data structures.
+ */
 ListHead::~ListHead()
 {
     delete pHash;
@@ -32,29 +38,53 @@ ListHead::~ListHead()
     delete pHeap;
 }
 
+/////////////
+// Getters //
+/////////////
+/**
+ * Get the hash.
+ * @return The hash.
+ */
 Hash* ListHead::getHash()
 {
     return pHash;
 }
 
+/**
+ * Get the BST.
+ * @return The BST.
+ */
 BST* ListHead::getBST()
 {
     return pTree;
 }
 
+/**
+ * Get the heap.
+ * @return The heap.
+ */
 Heap* ListHead::getHeap()
 {
     return pHeap;
 }
 
+/**
+ * Destroys the Hash table and all its elements.
+ */
 void ListHead::destroyHash()
 {
    pHash->destroyHash();
 }
+/**
+ * Destroys the BST and all its elements.
+ */
 void ListHead::destroyBST()
 {
     pTree->BST_destroy();
 }
+/**
+ * Destroys the Heap and all its elements.
+ */
 void ListHead::destroyHeap()
 {
     delete pHeap;
