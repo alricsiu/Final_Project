@@ -101,6 +101,8 @@ App* Hash::remove(int uniqueKey)
     App *result = NULL;
     int hashedKey = uniqueKey % (tableSize-1);
     result = hashList[hashedKey].remove(uniqueKey);
+    if(result)
+        count--;
     return result;
 }
 
