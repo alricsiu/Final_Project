@@ -1,9 +1,13 @@
 
+//  Created by Fangyuan Xing on 5/26/14.
+//  Copyright (c) 2014 Emily. All rights reserved.
+//***************************************************************************
 //  Stack.h
-
-/**~*~*
- Stack template
- *~**/
+//  The stack class provides an auxiliary data structure to be used in
+//  several of the BST traversals.
+//***************************************************************************
+//
+//
 #ifndef DYNAMICSTACK_H
 #define DYNAMICSTACK_H
 #include <iostream>
@@ -60,7 +64,8 @@ Stack<T>::~Stack()
 
 /**~*~*
  Member function push pushes the argument onto
- the stack.
+ the stack. It returns false if the node cannot
+ be pushed because of memory issues, true otherwise.
  *~**/
 template <class T>
 bool Stack<T>::push(T item)
@@ -84,7 +89,8 @@ bool Stack<T>::push(T item)
 /**~*~*
  Member function pop pops the value at the top
  of the stack off, and copies it into the variable
- passed as an argument.
+ passed as an argument. It returns false if the
+ stack is empty, and true if pop succeeds.
  *~**/
 template <class T>
 bool Stack<T>::pop(T &item)
@@ -118,7 +124,7 @@ bool Stack<T>::isEmpty()
 // my code
 /**~*~*
  Member function getCount returns the number of
- elements in the stack.
+ elements in the stack as an integer.
  *~**/
 template <class T>
 int Stack<T>::getCount()
@@ -130,6 +136,8 @@ int Stack<T>::getCount()
 /**~*~*
  Member function getTop copies the value at the front
  of the stack into the variable passed as an argument.
+ If the stack is empty, it returns false, but if getTop
+ succeeds, it returns true.
  *~**/
 template <class T>
 bool Stack<T>::getTop(T &item)

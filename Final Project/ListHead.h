@@ -5,6 +5,8 @@
 //  Created by Siuperman on 6/18/14.
 //  Copyright (c) 2014 Siuperman. All rights reserved.
 //
+//  Listhead encapsulates all operations of the program, for
+//  main to execute. It also serves to protect the data.
 
 #ifndef __Final_Project__ListHead__
 #define __Final_Project__ListHead__

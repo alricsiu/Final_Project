@@ -1,6 +1,11 @@
-/**~*~*
- Queue template
- *~**/
+//
+//  Created by Fangyuan Xing on 5/26/14.
+//  Copyright (c) 2014 Emily. All rights reserved.
+//***************************************************************************
+//  Queue.h
+//  Queue is used as an auxiliary data structure for the BST's Breadth-First
+//  Traversal.
+//***************************************************************************
 #ifndef DYNAMICQUEUE_H // change DYNAMICSTACK to DYNAMICQUEUE
 #define DYNAMICQUEUE_H // change DYNAMICSTACK to DYNAMICQUEUE
 #include <iostream>
@@ -80,7 +85,9 @@ bool Queue<T>::isEmpty()
 
 /**~*~*
  Member function enqueue inserts the argument into
- the queue.
+ the queue. It returns true for a successful operation,
+ and false if the new node cannot be allocated because
+ of memory issues.
  *~**/
 template <class T>
 bool Queue<T>::enqueue(T item)
@@ -110,7 +117,8 @@ bool Queue<T>::enqueue(T item)
 /**~*~*
  Member function dequeue deletes the value at the front
  of the queue, and copies it into the variable
- passed as an argument.
+ passed as an argument. It returns false if the queue is
+ already empty and true if the dequeue works.
  *~**/
 template <class T>
 bool Queue<T>::dequeue(T &item)
@@ -139,6 +147,8 @@ bool Queue<T>::dequeue(T &item)
 /**~*~*
  Member function queueFront copies the value at the front
  of the queue into the variable passed as an argument.
+ If the queue is empty, it returns false; it returns true
+ if the operations succeeds.
  *~**/
 template <class T>
 bool Queue<T>::queueFront(T &item)
@@ -154,6 +164,8 @@ bool Queue<T>::queueFront(T &item)
 /**~*~*
  Member function queueRear copies the value at the rear
  of the queue into the variable passed as an argument.
+ If the queue is empty, it returns false; otherwise, it
+ returns true.
  *~**/
 template <class T>
 bool Queue<T>::queueRear(T &item)
