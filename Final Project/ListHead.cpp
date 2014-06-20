@@ -46,7 +46,7 @@ ListHead::ListHead(int fileLength)
 {
     pHash = new Hash(Hash::getNextPrime(fileLength*2));
     pTree = new BST();
-    pHeap = new Heap();
+    pHeap = new Heap(fileLength*2);
 
 }
 

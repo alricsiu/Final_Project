@@ -439,7 +439,11 @@ void BST::_printTree(BST_Node* root, int level) const
         {
             cout << "    ";
         }
-        cout << level << ". " << root->data->getUniqueKey() << endl;
+        
+        string temp = root->data->getAppName();
+        string sub1 = temp.substr(0,10);
+        
+        cout << level << ". " << root->data->getUniqueKey() << " "<< sub1 << endl ;
         _printTree(root->left, level + 1);
     }
 }

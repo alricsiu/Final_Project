@@ -9,9 +9,16 @@
 //*********************************************************************************************************************
 //Constructor: Allocates for a new maxHeap array and initializes the count
 //*********************************************************************************************************************
-Heap::Heap(void)
+Heap::Heap()
 {
-	maxHeap = new Data[MAXSIZE];			//allocate for a new array
+    size = MAXSIZE;
+	maxHeap = new Data[size];			//allocate for a new array
+	count = 0;								//initialize the count to zero
+}
+Heap::Heap(int size)
+{
+    this->size = size;
+	maxHeap = new Data[this->size];			//allocate for a new array
 	count = 0;								//initialize the count to zero
 }
 
@@ -38,9 +45,10 @@ bool Heap::insert(int newData)
 	bool inPlace = false;						//a flag to see if the data is in the right place
 	bool isDuplicate = false;					//a flag to see if a duplicate number is already in the heap
 	
-	if ( count >= MAXSIZE )						//if the count is greater than or equal to the maxsize, do not insert to the heap
+	if ( count >= size )						//if the count is greater than or equal to the maxsize, do not insert to the heap
 	{
-		cout << "The heap is full and the new data cannot be added.";
+//		cout << "The heap is full and the new data cannot be added.";
+        reHeap();
 		return false;							//return before inserting
 	}
 
@@ -114,6 +122,22 @@ void Heap::displayHeap() const
 	}
 }
 
+void Heap::reHeap()
+{
+    
+    Data *remaxHeap = new Data[size*2];
+    cout<<"reheaped";
+    size = size*2;
+    
+    for(int i = 0; i<size;i++)
+    {
+        remaxHeap[i] = maxHeap[i];
+    }
+    
+ 	maxHeap = remaxHeap;			//allocate for a new array
+    
+}
+
 //*********************************************************************************************************************
 //displayTop:  It will display the unique key and frequency of element at the top of the heap.
 //*********************************************************************************************************************
@@ -129,53 +153,3 @@ void Heap::displayTop() const
 		<< ".\n\tIt has been searched for " << maxHeap[0].frequency << " time(s).\n";
     }
 }
-
-/*
-Heap::bool remove()
-{
-
-}
-
-//heapCreate:  It will organize an array into a heap
-void HeapT::heapCreate()
-{
-	cout << " heapCreate ";
-	for (int i = count / 2; i >= 0; i--)
-		heapRebuild(i);
-}
-
-//heapRebuild:  It will convert a semiheap into a heap
-void HeapT::heapRebuild(int index)
-{
-	cout << " heapRebuild ";
-	int largerChildIndex, rightChildIndex;
-	Data temp1, temp2;
-
-	if ( isALeaf(index) == false )
-	{
-		largerChildIndex = 2 * index + 1;
-		if ( maxHeap[2 * index + 2].num != NULL )
-		{
-			rightChildIndex = largerChildIndex + 1;
-			if ( maxHeap[rightChildIndex].num > maxHeap[largerChildIndex].num )
-				largerChildIndex = rightChildIndex;
-		}
-
-		if ( maxHeap[index].num < maxHeap[largerChildIndex].num )
-		{
-			temp1 = maxHeap[index];
-			temp2 = maxHeap[largerChildIndex];
-			maxHeap[index] = temp2;
-			maxHeap[largerChildIndex] = temp1;
-			heapRebuild(largerChildIndex);
-		}
-	}
-}
-
-//isALeaf:  Returns true if the index in the parameter is a leaf, false if not.
-bool HeapT::isALeaf(int index)
-{
-	return ( maxHeap[2 * index + 2].num != NULL && maxHeap[2 * index + 1].num != NULL );
-}
-
-*/
