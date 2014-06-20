@@ -287,10 +287,8 @@ void Hash::reHash()
  */
 void Hash::destroyHash()
 {
-    for(int i = 0; i<tableSize;i++)
-    {
-        hashList[i].destroyBucket();
-    }
+    delete [] hashList;
+    Hash();
 }
 
 
@@ -302,7 +300,6 @@ void Hash::destroyHash()
  */
 Hash::~Hash()
 {
-    destroyHash();
     delete [] hashList;
 }
 

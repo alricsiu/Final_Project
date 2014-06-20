@@ -12,6 +12,7 @@
 		A10FC7B4195264F80061493B /* data.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 069B195F1952515000D5A970 /* data.txt */; };
 		A838115519454AFB00A1712C /* Final_Project.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A838115419454AFB00A1712C /* Final_Project.1 */; };
 		A838116419454D8800A1712C /* BST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A838116319454D8800A1712C /* BST.cpp */; };
+		A86D34E3195458B9008BA8B4 /* Heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A86D34E1195458B9008BA8B4 /* Heap.cpp */; };
 		A88B84D0195261B50043A310 /* ListHead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A88B84CF195261B50043A310 /* ListHead.cpp */; };
 		A88B84D51954200F0043A310 /* Bucket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A88B84D11954200F0043A310 /* Bucket.cpp */; };
 		A88B84D61954200F0043A310 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A88B84D31954200F0043A310 /* Hash.cpp */; };
@@ -42,6 +43,8 @@
 		A838116019454D8800A1712C /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		A838116219454D8800A1712C /* BST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BST.h; sourceTree = "<group>"; };
 		A838116319454D8800A1712C /* BST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BST.cpp; sourceTree = "<group>"; };
+		A86D34E1195458B9008BA8B4 /* Heap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Heap.cpp; sourceTree = "<group>"; };
+		A86D34E2195458B9008BA8B4 /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
 		A88B84CE195261B50043A310 /* ListHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListHead.h; sourceTree = "<group>"; };
 		A88B84CF195261B50043A310 /* ListHead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListHead.cpp; sourceTree = "<group>"; };
 		A88B84D11954200F0043A310 /* Bucket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bucket.cpp; sourceTree = "<group>"; };
@@ -91,8 +94,10 @@
 				069B19631952559300D5A970 /* App.h */,
 				A88B84D11954200F0043A310 /* Bucket.cpp */,
 				A88B84D21954200F0043A310 /* Bucket.h */,
-				A88B84D31954200F0043A310 /* Hash.cpp */,
 				A88B84D41954200F0043A310 /* Hash.h */,
+				A88B84D31954200F0043A310 /* Hash.cpp */,
+				A86D34E2195458B9008BA8B4 /* Heap.h */,
+				A86D34E1195458B9008BA8B4 /* Heap.cpp */,
 				A838115419454AFB00A1712C /* Final_Project.1 */,
 				069B195F1952515000D5A970 /* data.txt */,
 			);
@@ -153,6 +158,7 @@
 				A838116419454D8800A1712C /* BST.cpp in Sources */,
 				A88B84D51954200F0043A310 /* Bucket.cpp in Sources */,
 				A88B84D0195261B50043A310 /* ListHead.cpp in Sources */,
+				A86D34E3195458B9008BA8B4 /* Heap.cpp in Sources */,
 				A88B84D61954200F0043A310 /* Hash.cpp in Sources */,
 				069B196F1952559300D5A970 /* App.cpp in Sources */,
 				069B196E1952559300D5A970 /* Final_Project_Main.cpp in Sources */,

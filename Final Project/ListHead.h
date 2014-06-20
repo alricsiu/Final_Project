@@ -13,6 +13,7 @@
 #include "App.h"
 #include "BST.h"
 #include "Hash.h"
+#include "Heap.h"
 
 //const int BUCKET_SIZE = 3;
 
@@ -26,6 +27,7 @@ private:
     
     Hash *pHash;
     BST *pTree;
+    Heap *pHeap;
     
 public:
     //Constructor
@@ -36,9 +38,11 @@ public:
     
     Hash* getHash();
     BST* getBST();
+    Heap* getHeap();
     
     void destroyBST();
     void destroyHash();
+    void destroyHeap();
     //Member Functions
     
     

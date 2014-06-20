@@ -24,8 +24,10 @@ using namespace std;
 
 #include "BST.h"
 #include "ListHead.h"
+#include "Heap.h"
 
-const char INSERT_CHOICE = 'I',
+const char FREQUENT_SEARCH= 'P',
+INSERT_CHOICE = 'I',
 DELETE_CHOICE = 'D',
 SEARCH_CHOICE = 'S',
 PRINT_HASH_LIST = 'H',
@@ -144,6 +146,8 @@ int main()
                 int key = getValidKey(" Enter Unique Key:");
                 App *app = listHead->getHash()->search(key);
                 handleResult(app, "Search Result");
+                listHead->getHeap()->insert(key);
+                
             }
                 break;
             case PRINT_HASH_LIST:
@@ -170,6 +174,11 @@ int main()
             case SAVE_TO_FILE_CHOICE:
             {
                cout<<"Save to file choice";
+            }
+                break;
+            case FREQUENT_SEARCH:
+            {
+                listHead->getHeap()->displayTop();
             }
                 break;
             case HASH_STATS_CHOICE:
@@ -216,6 +225,8 @@ int menu(bool showMenu)
         << " - Save current output to file\n\t"
         << HASH_STATS_CHOICE
         << " - Display hash statistics\n\t"
+        << FREQUENT_SEARCH
+        << " - Display most frequent search\n\t"
         << TOGGLE_MENU
         << " - Toggle Menu \n\t"
         << QUIT_CHOICE

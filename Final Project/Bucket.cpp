@@ -33,14 +33,7 @@ Bucket::Bucket()
  */
 Bucket::~Bucket()
 {
-     for(int i = 0; i<BUCKET_SIZE;i++)
-    {
-        App* buffer = locations[i];
-        if(buffer)
-        {
-            delete buffer;
-        }
-    }
+    destroyBucket();
 }
 
 ///////////////////
