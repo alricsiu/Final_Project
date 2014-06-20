@@ -28,7 +28,6 @@ Hash::Hash()
     
     hashList = new Bucket[tableSize];
 
-    overflow = new vector<App*>;
     count = 0;
     collisions = 0;
 }
@@ -45,7 +44,6 @@ Hash::Hash(int tableSize)
     
     hashList = new Bucket[tableSize];
     
-    overflow = new vector<App*>;
     count = 0;
 }
 
@@ -77,7 +75,8 @@ void Hash::insert(App* app)
             count++;
             break;
         default:
-           overflow->push_back(app);
+            reHash();
+            insert(app);
             break;
     }
     
@@ -124,22 +123,6 @@ void Hash::printHash()
         hashList[i].printBucket();
     }
     
-    cout<<"Overflow : [ ";
-    if(overflow->size()>0)
-    {
-        for(int i = 0; i<overflow->size();i++)
-        {
-            cout<<overflow->at(i)->getUniqueKey();
-            if(i!=overflow->size()-1)
-                cout<<", ";
-            else
-                cout<<" ]";
-
-        }
-    }
-    else
-        cout<<"Empty";
-    
     cout<<endl;
 }
 
@@ -156,15 +139,6 @@ void Hash::displayHash()
     for(int i = 0; i<tableSize;i++)
     {
         hashList[i].displayBucket();
-    }
-    
-    if(overflow->size()>0)
-    {
-        for(int i = 0; i<overflow->size();i++)
-        {
-            cout<<"\t"<<overflow->at(i)->getUniqueKey()<<endl;
-            
-        }
     }
     
 }

@@ -1,14 +1,18 @@
 /**~*~*
     
-    This program loads a set of iOS top application data and stores it in a BST Tree. The unique
-    key is the unique number that apple has assigned to the specific application. The program
-    can perform recursive depth first traversals, breadth first traversals, print the tree, search
-    for specific unique keys, as well as search for a range of unique keys.
+    This program loads a set of iOS top application data and stores it in a custom database.
+    The database consists of a List head, which contains a Hash List, BST, and a Heap. Using
+    these data structures, this app can allow users to insert and delete entries, print the entries
+    in order by unique key, search for a specific app by their unique key, view the hash table,
+    the BST Tree as well as hash statistics. Finally, the app persists changes to the database 
+    by saving the changes to the data file each time the database is changed.
 
-    Homework 4 - Binary Search Trees.
+    Final Project - Mobile Application Database
+
+    Team #13
 
     Name: Alric Siu
-    Date: May 25, 2014
+    Date: June 20, 2014
 
  *~**/
 
@@ -26,42 +30,28 @@ using namespace std;
 #include "ListHead.h"
 #include "Heap.h"
 
-const char FREQUENT_SEARCH= 'P',
-INSERT_CHOICE = 'I',
+const char INSERT_CHOICE = 'I',
 DELETE_CHOICE = 'D',
 SEARCH_CHOICE = 'S',
 PRINT_HASH_LIST = 'H',
-PRINT_KEY_LIST = 'K',
+PRINT_SEQ_LIST = 'O',
 PRINT_TREE_CHOICE = 'T',
-SAVE_TO_FILE_CHOICE = 'F',
-HASH_STATS_CHOICE = 'L',
+SAVE_TO_FILE_CHOICE = 'W',
+HASH_STATS_CHOICE = 'X',
+FREQUENT_SEARCH= 'G',
 TOGGLE_MENU = 'M',
 QUIT_CHOICE = 'Q';
 
 const string WELCOME_STATEMENT = "Welcome to the Binary Search Tree Program.  This program parses a file of top iOS Applications into a binary search tree and allow a user to interact with the tree.\n\n";
 
-////////////////-
+////////////////
 // Prototypes //
 ////////////////
-
-/*
- Todo:
- - insertData
- - deleteData
- - Find&display one element using primary key
- - List data in hash table sequence
- - List data in key sequence
- - print indented tree
- - data to file
- - hash stats.
- */
 
 int menu(bool);
 char getValidChar();
 int getValidKey(string);
 string getValidString(string);
-void getValidRange(int &, int &);
-
 int countLines(ifstream &inputFile);
 void parseToListHead(ListHead* , ifstream &, string);
 void handleResult(App* result, string displayMessage);
@@ -71,7 +61,7 @@ void handleResult(App* result, string displayMessage);
 // Main //
 //////////
 /**
- * Will open the inputFile, parse into a binary tree and prompt the user to interact with the data.
+ * Will open the inputFile, parse into listhead and prompt the user to interact with the data.
  * @return [Returns 0 when the program is successful.
  *          Returns -1 when the input file can not be open ]
  */
@@ -127,6 +117,7 @@ int main()
                 listHead->getBST()->BST_insert(app);
                 listHead->getHash()->insert(app);
                 
+                //persist changes
                 listHead->getBST()->outputTofile("data.txt");
 
             }
@@ -134,13 +125,17 @@ int main()
             case DELETE_CHOICE:
             {
                 int key = getValidKey(" Enter Unique Key:");
+
                 App *bstResult = listHead->getBST()->BST_delete(key);
                 App *hashResult = listHead->getHash()->remove(key);
+
                 if(bstResult == hashResult)
                     handleResult(hashResult,"Deleted Item");
                 else
                     cout<<"Program Error! Delete mismatch - Contact administrator"<<endl;
+                
                 delete hashResult;
+                //persist changes
                 listHead->getBST()->outputTofile("data.txt");
 
             }
@@ -150,25 +145,25 @@ int main()
                 int key = getValidKey(" Enter Unique Key:");
                 App *app = listHead->getHash()->search(key);
                 handleResult(app, "Search Result");
-                listHead->getHeap()->insert(key);
-                
+               
+                listHead->getHeap()->insert(key);      
             }
                 break;
             case PRINT_HASH_LIST:
             {
-                cout << "Hash Contents:" << endl;
+                cout << "Hash Table:" << endl;
                 listHead->getHash()->printHash();
             }
                 break;
-            case PRINT_KEY_LIST:
+            case PRINT_SEQ_LIST:
             {
-                cout<<"  Data in Key Sequence:"<<endl;
+                cout<<"  Key Sequence:"<<endl;
                 listHead->getBST()->BST_list();
             }
                 break;
             case PRINT_TREE_CHOICE:
             {
-                cout<<endl<<"Binary Search Tree displayed below:"<<endl<<endl;
+                cout<<endl<<"  Binary Search Tree:"<<endl<<endl;
                 if(listHead->getBST()->getCount())
                     listHead->getBST()->BST_print();
                 else
@@ -220,25 +215,24 @@ int menu(bool showMenu)
         << DELETE_CHOICE
         << " - Delete an Entry\n\t"
         << SEARCH_CHOICE
-        << " - Search for a specific key\n\t"
+        << " - Search by Unique Key\n\t"
         << PRINT_HASH_LIST
-        << " - Prints Hash List\n\t"
-        << PRINT_KEY_LIST
-        << " - Print list of entries in key sequence.\n\t"
+        << " - Print Hash Table\n\t"
+        << PRINT_SEQ_LIST
+        << " - Print Entries by Key sequence.\n\t"
         << PRINT_TREE_CHOICE
         << " - Print Tree as an Indented List\n\t"
-        << SAVE_TO_FILE_CHOICE
-        << " - Save current output to file\n\t"
         << HASH_STATS_CHOICE
-        << " - Display hash statistics\n\t"
+        << " - Display Hash Statistics\n\t"
         << FREQUENT_SEARCH
-        << " - Display most frequent search\n\t"
+        << " - Display most Frequent Search\n\t"
+        << SAVE_TO_FILE_CHOICE
+        << " - Save Changes\n\t"
         << TOGGLE_MENU
         << " - Toggle Menu \n\t"
         << QUIT_CHOICE
         << " - Quit the program\n";
-    
-    
+
     choice = getValidChar();
     return choice;
 }
@@ -279,62 +273,16 @@ char getValidChar()
     return inputCharacter;
 }
 
-//////////////////
-//GetValidRange //
-//////////////////
+/////////////////////
+// getValid String //
+/////////////////////
 /**
- * Prompts the user to enter a valid range for the printRange function. Will prompt for a 
- * lower bound and then prompt for a upper bound. Also ensures that the upper bound is 
- * larger than the lower bound. Will reprompt if the upper bound is smaller than the lower
- * bound.  
- * @param lowerbound the lower search bound as an integer
- * @param upperbound the upper search bound as an integer
- */
-void getValidRange(int &lowerbound, int &upperbound)
-{
-    int num;
-    bool success;
-    
-    do
-    {
-        cout << " Enter the lower bound: ";
-        cin >> num;
-        success = !cin.fail();
-        cin.clear();          // to clear the error flag
-        cin.ignore(80, '\n'); // to discard the unwanted input from the input buffer
-    }while(!success);
-    
-    lowerbound = num;
-    
-    do
-    {
-        cout << " Enter the upper bound: ";
-        cin >> num;
-        success = !cin.fail();
-        if(num<lowerbound)
-        {
-            success = false;
-            cout<< "\t Enter a value larger than the lower bound."<<endl;
-        }
-        cin.clear();          // to clear the error flag
-        cin.ignore(80, '\n'); // to discard the unwanted input from the input buffer
-    }while(!success);
-    
-    upperbound = num;
-    
-    
-    
-}
-
-////////////////////
-// getValid String   //
-////////////////////
-/**
- * This function prompts the user to enter an integer that is a valid key.
- * If the input is not valid ( not an integer ) it
- * prompts the user to enter a new integer, until the input is valid.
+ * This function prompts the user to enter a string that is valid.
+ * If the input is not valid ( not a string ) it
+ * prompts the user to enter a new string, until the input is valid.
  *
- * @return The integer that the user inputs that is valid.
+ * @param  displayMessage The message to be displayed to the user.
+ * @return The string that the user inputs that is valid.
  */
 string getValidString(string displayMessage)
 {
@@ -363,6 +311,7 @@ string getValidString(string displayMessage)
  * If the input is not valid ( not an integer ) it
  * prompts the user to enter a new integer, until the input is valid.
  *
+  * @param  displayMessage The message to be displayed to the user.
  * @return The integer that the user inputs that is valid.
  */
 int getValidKey(string displayMessage)
@@ -387,7 +336,7 @@ int getValidKey(string displayMessage)
 //Handle Search //
 //////////////////
 /**
- * Generates the output from the result App returned from searching the Hash list.
+ * Generates the output from the result App returned from searching the database.
  * @param result A App* that is the search result.
  */
 void handleResult(App* result, string displayMessage)
@@ -406,18 +355,7 @@ void handleResult(App* result, string displayMessage)
     }
 }
 
-//////////////////////
-//ParseToBinaryTree //
-//////////////////////
-/**
- * Parses the input file into the binary tree. Creates an app object for each entry and inserts
- * the entry into the binary search tree using its unique key.
- 
- EDIT: now also inserts into Hash Table for each insert. A better function name might be readData.
- 
- * @param tree      The BST tree to insert the entries into.
- * @param inputFile The inputfile with the entries. Entries must span 4 lines, separated by new lines.
- */
+
 int countLines(ifstream &inputFile)
 {
     char c;

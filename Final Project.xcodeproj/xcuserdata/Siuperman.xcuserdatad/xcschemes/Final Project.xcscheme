@@ -44,7 +44,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/Siuperman/Desktop/Actual Final Project/Final Project"
+      customWorkingDirectory = "/Users/Siuperman/Documents/De Anza/CIS Final/Final Project_Golden/Final Project"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"

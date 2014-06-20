@@ -1,9 +1,11 @@
 //
-//  App.h
+//  App.cpp
 //  Lab 4
 //
-//  Created by Siuperman on 5/25/14.
-//  Copyright (c) 2014 Siuperman. All rights reserved.
+//  App class that contains all the information for each mobile app entry.
+//
+//  Created by Alric Siu on 5/25/14.
+//  Copyright (c) 2014 Alric Siu. All rights reserved.
 //
 
 #ifndef Lab_4_Application_h

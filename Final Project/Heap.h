@@ -3,7 +3,9 @@
 //DATE: June 19, 2014
 //COMPILER: MICROSOFT VISUAL STUDIO 2010 EXPRESS AND WINDOWS XP
 //TITLE: TEAM PROJECT, TEAM #13, HEAP FOR SEARCHING OF MOBILE APPS DATA
-#pragma once
+
+#include <iostream>
+
 using namespace std;
 
 #ifndef Final_Heap_h

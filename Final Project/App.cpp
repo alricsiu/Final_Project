@@ -2,8 +2,8 @@
 //  App.cpp
 //  Lab 4
 //
-//  Created by Siuperman on 5/25/14.
-//  Copyright (c) 2014 Siuperman. All rights reserved.
+//  Created by Alric Siu on 5/25/14.
+//  Copyright (c) 2014 Alric Siu. All rights reserved.
 //
 
 #include "App.h"

@@ -71,27 +71,6 @@ App* BST::BST_delete(int target)
 }
 
 //***************************************************************************
-//  This function searches by a unique key
-//  It calls the private function _search to check target, returns true if
-//  found, returns false if not
-//***************************************************************************
-//bool BST::BST_search(int target)
-//{
-//    BST_Node *found = _search(target);
-//    if (found)
-//    {
-//        cout << "found in the tree! " << endl;
-//        cout << found -> data -> getUniqueKey() << " "
-//             << found -> data -> getAppName() << " "
-//             << found -> data -> getAuthor() << " "
-//        << found -> data -> getCategory() << endl;
-//        return true;
-//    }
-//    cout << "cannot find in the tree!" << endl;
-//    return false;
-//}
-
-//***************************************************************************
 //  This funtion prints data in key sequence by calling private funtion
 //  __InorderTraverse
 //***************************************************************************

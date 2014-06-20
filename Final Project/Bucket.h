@@ -4,7 +4,7 @@
 //
 //  Holds the number of apps defined by BUCKET_SIZE in the hash table.
 //
-//  Created by Siuperman on 6/10/14.
+//  Created by Alric Siu on 6/10/14.
 //  Copyright (c) 2014 Siuperman. All rights reserved.
 //
 #include <iostream>

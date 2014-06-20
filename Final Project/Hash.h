@@ -26,7 +26,6 @@ class Hash
 private:
     
     Bucket *hashList;
-   vector<App*> *overflow;
     
    int count;
    int tableSize;

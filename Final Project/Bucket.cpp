@@ -1,11 +1,11 @@
 //
 //  Bucket.cpp
-//  Lab 5
+//  Final Project
 //
 //  Holds the number of apps defined by BUCKET_SIZE in the hash table.
 //
-//  Created by Siuperman on 6/10/14.
-//  Copyright (c) 2014 Siuperman. All rights reserved.
+//  Created by Alric Siu on 6/10/14.
+//  Copyright (c) 2014 Alric Siu. All rights reserved.
 //
 
 #include "Bucket.h"
@@ -65,9 +65,9 @@ App* Bucket::searchBucket(int uniqueKey)
 // Remove Item //
 ///////////////////
 /**
- * Search the Bucket
- * @param  uniqueKey the unique key of an App
- * @return           the pointer to the app if found, else will be null
+ * Remove App item from the Bucket
+ * @param  uniqueKey the unique key of an App to be removed
+ * @return           the pointer to the app if removed, else will be null
  */
 App* Bucket::remove(int uniqueKey)
 {
@@ -131,7 +131,7 @@ int Bucket::insert(App* app)
 // Display Bucket //
 ////////////////////
 /*
-    Helper to display the bucket. Lists the app unique key in order of location.
+ *  Helper to display the bucket. Lists the app unique key in order of location.
  */
 void Bucket::displayBucket()
 {
@@ -139,13 +139,7 @@ void Bucket::displayBucket()
     {
         App* buffer = locations[i];
         if(buffer)
-        {
             cout<<"\t"<<buffer->getUniqueKey()<<endl;
-        }
-        else
-        {
-//            cout<<"\tLocation "<<i<<": Empty"<<endl;
-        }
     }
     
 }
@@ -153,11 +147,11 @@ void Bucket::displayBucket()
 //////////////////
 // Print Bucket //
 //////////////////
-/*
-    A more detailed print of the locations in the bucket
-    Will print each location and the unique key it contains.
-    Will print empty if the location is empty
- */
+/**
+ *   A more detailed print of the locations in the bucket
+ *  Will print each location and the unique key it contains.
+ *   Will print empty if the location is empty
+ **/
 void Bucket::printBucket()
 {
     for(int i = 0; i<BUCKET_SIZE;i++)
@@ -203,6 +197,14 @@ App* Bucket::getLocation(int index)
     return NULL;
 }
 
+
+
+////////////////////
+// Destroy Bucket //
+////////////////////
+/**
+ * Destroys the bucket, removes all app and frees their memory.
+ */
 void Bucket::destroyBucket()
 {
     for(int i = 0; i<BUCKET_SIZE;i++)
