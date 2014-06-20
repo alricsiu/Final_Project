@@ -98,7 +98,7 @@ App* BST::BST_delete(int target)
 //***************************************************************************
 void BST::BST_list()
 {
-    _InorderTraverse(root);
+    _InorderTraverse();
 }
 
 //***************************************************************************
@@ -375,9 +375,9 @@ BST::BST_Node* BST::_search(int target)
 
 //***************************************************************************
 //  This funtion is inorder traverasl
-//  The parameter is BST_Node* root
+//
 //***************************************************************************
-void BST::_InorderTraverse(BST_Node* root) const
+void BST::_InorderTraverse() const
 {
     if (root == NULL)
         return;

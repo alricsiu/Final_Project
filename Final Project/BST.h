@@ -149,9 +149,9 @@ private:
     
     //***************************************************************************
     //  This funtion is inorder traverasl
-    //  The parameter is BST_Node* root
+    //
     //***************************************************************************
-    void _InorderTraverse(BST_Node* root) const;
+    void _InorderTraverse() const;
     
     //***************************************************************************
     //  This funtion deletes all the nodes in the tree

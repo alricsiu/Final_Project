@@ -7,5 +7,3 @@
 //
 
 #include "ListHead.h"
-
-L
