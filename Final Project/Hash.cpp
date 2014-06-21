@@ -31,6 +31,7 @@ Hash::Hash()
 
     count = 0;
     collisions = 0;
+    count_occupiedBuckets = 0;
 }
 
 /////////////////
@@ -46,7 +47,29 @@ Hash::Hash(int tableSize)
     hashList = new Bucket[tableSize];
     
     count = 0;
+    collisions = 0;
+    count_occupiedBuckets = 0;
 }
+
+////////////
+// Hasher //
+////////////
+/**
+ * Hash algorithm to evenly and randomly hash elements to the table.
+ * @param appID  unique key to be hashed.
+ */
+int Hash::hasher(int appID)
+{
+//    return appID % (tableSize - 1);
+    int index = 0;
+    int digit1 = appID / 100000000;
+    int digit3 = appID / 1000000 % 10;
+    int digit9 = appID % 10;
+    index += digit1 * 100 + digit3 * 10 + digit9;
+    index %= tableSize;
+    return index;
+}
+
 
 ////////////
 // Insert //
@@ -58,7 +81,7 @@ Hash::Hash(int tableSize)
 void Hash::insert(App* app)
 {
     
-    int hashedKey = app->getUniqueKey()%(tableSize-1);
+    int hashedKey = hasher(app->getUniqueKey());
     
     int status = hashList[hashedKey].insert(app);
     
@@ -70,6 +93,7 @@ void Hash::insert(App* app)
             break;
         case 0:
             count++;
+            count_occupiedBuckets++;
             break;
         case 1:
             collisions++;
@@ -245,7 +269,7 @@ int Hash::getCollisions()
  */
 double Hash::getLoadFactor()
 {
-    return (double)count/tableSize;
+    return (double)count_occupiedBuckets/tableSize;
 }
 
 /**

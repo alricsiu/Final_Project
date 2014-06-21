@@ -27,7 +27,8 @@ private:
     
     Bucket *hashList;
     
-   int count;
+    int count; // total number of data points in hash.
+    int count_occupiedBuckets;
    int tableSize;
    int collisions;
  
@@ -52,6 +53,7 @@ public:
     int  getCount();
     int  getLongestBucketLength();
     int  getNumFullBuckets();
+    int  hasher(int);
     
     int getTableSize();
     Bucket* getHashList();
